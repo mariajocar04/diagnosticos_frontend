@@ -1,9 +1,15 @@
+export interface Rol {
+  nombre: string;
+  descripcion?: string;
+}
+
 export interface UserProfile {
   id: number;
+  usuario: string;
   email: string;
-  nombre_completo: string;
-  rol: 'enfermero' | 'administrador';
-  is_active: boolean;
+  nombre_completo?: string;
+  activo: boolean;
+  roles: Rol[];
 }
 
 export interface NandaCatalog {
