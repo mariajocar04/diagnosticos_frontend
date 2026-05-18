@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-fixed-dim": "#a2c9ff",
+                "secondary-container": "#0274cb",
+                "inverse-surface": "#e5e2e1",
+                "on-error": "#690005",
+                "surface-container": "#201f1f",
+                "outline": "#86948b",
+                "on-secondary-container": "#f7f8ff",
+                "error-container": "#93000a",
+                "primary-container": "#23c18f",
+                "tertiary-container": "#ff8978",
+                "on-primary-fixed-variant": "#005139",
+                "on-tertiary-fixed-variant": "#80291f",
+                "on-tertiary": "#61120b",
+                "secondary-fixed": "#d3e4ff",
+                "tertiary-fixed": "#ffdad5",
+                "surface-container-highest": "#353534",
+                "surface-container-lowest": "#0e0e0e",
+                "on-tertiary-fixed": "#410000",
+                "tertiary-fixed-dim": "#ffb4a8",
+                "on-primary": "#003827",
+                "surface-dim": "#131313",
+                "on-secondary-fixed-variant": "#004881",
+                "surface": "#131313",
+                "error": "#ffb4ab",
+                "primary": "#4edeaa",
+                "surface-tint": "#4edeaa",
+                "on-primary-fixed": "#002115",
+                "primary-fixed-dim": "#4edeaa",
+                "inverse-on-surface": "#313030",
+                "inverse-primary": "#006c4d",
+                "on-primary-container": "#004933",
+                "surface-container-high": "#2a2a2a",
+                "on-surface-variant": "#bbcac1",
+                "surface-container-low": "#1c1b1b",
+                "on-error-container": "#ffdad6",
+                "secondary": "#a2c9ff",
+                "surface-variant": "#353534",
+                "on-secondary-fixed": "#001c38",
+                "surface-bright": "#393939",
+                "on-secondary": "#00315c",
+                "on-surface": "#e5e2e1",
+                "outline-variant": "#3c4a43",
+                "primary-fixed": "#6efbc4",
+                "on-tertiary-container": "#752118",
+                "on-background": "#e5e2e1",
+                "tertiary": "#ffb4a8",
+                "background": "#131313"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "md": "16px",
+                "xs": "4px",
+                "margin-desktop": "32px",
+                "base": "4px",
+                "margin-mobile": "16px",
+                "lg": "24px",
+                "sm": "8px",
+                "xl": "32px",
+                "gutter": "16px"
+        },
+        "fontFamily": {
+                "code-md": ["JetBrains Mono"],
+                "code-sm": ["JetBrains Mono"],
+                "body-lg": ["Inter"],
+                "display-lg": ["Manrope"],
+                "headline-md": ["Manrope"],
+                "label-caps": ["Inter"],
+                "headline-lg": ["Manrope"],
+                "body-sm": ["Inter"],
+                "body-md": ["Inter"]
+        },
+        "fontSize": {
+                "code-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                "code-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+        }
+      },
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #3c4a43;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-[64px]">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-margin-mobile h-[72px] w-full bg-surface-container border-b border-outline-variant sticky top-0 z-50">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold">
+                JM
+            </div>
+<h1 class="font-headline-md text-headline-md text-on-surface">Hola, Javier</h1>
+</div>
+<div class="flex items-center gap-xs">
+<span class="bg-primary/20 text-primary-fixed-dim px-3 py-1 rounded-full font-label-caps text-[11px] uppercase tracking-wider">Enfermero</span>
+</div>
+</header>
+<main class="max-w-3xl mx-auto px-margin-mobile pt-lg">
+<!-- Patient Brief Info -->
+<div class="flex items-center justify-between mb-xl">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed-dim flex items-center justify-center text-on-secondary-fixed-variant font-bold text-headline-md">
+                    RG
+                </div>
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Ramón García</h2>
+<p class="font-body-sm text-on-surface-variant">ID: 48592-A • Sala 402</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high rounded-full p-2">more_vert</button>
+</div>
+<!-- Tab Navigation -->
+<div class="flex gap-lg border-b border-outline-variant mb-lg overflow-x-auto whitespace-nowrap scrollbar-hide">
+<button class="pb-base px-xs font-label-caps text-on-surface-variant opacity-60">RESUMEN</button>
+<button class="pb-base px-xs font-label-caps text-on-surface-variant opacity-60">PLAN CUIDADOS</button>
+<button class="pb-base px-xs font-label-caps text-primary border-b-2 border-primary">HISTORIAL</button>
+<button class="pb-base px-xs font-label-caps text-on-surface-variant opacity-60">SIGNOS VITALES</button>
+</div>
+<!-- Timeline Section -->
+<section class="relative timeline-line ml-base">
+<!-- Event 1: Note Added -->
+<div class="relative pl-xl pb-lg group">
+<div class="absolute left-0 w-[42px] h-[42px] flex items-center justify-center bg-background z-10">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">edit_note</span>
+</div>
+</div>
+<div class="bg-surface-container border border-outline-variant rounded-xl p-md">
+<div class="flex justify-between items-start mb-xs">
+<p class="font-body-sm text-on-surface-variant">Hace 15 min • 14:20</p>
+<span class="font-label-caps text-secondary text-[11px]">NOTA CLÍNICA</span>
+</div>
+<p class="font-body-md text-on-surface mb-sm">Paciente presenta leve mejoría tras administración de analgésico. Refiere menos dolor en la zona lumbar (3/10 EVA).</p>
+<div class="flex items-center gap-xs">
+<div class="w-5 h-5 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-[10px] font-bold">AL</div>
+<span class="font-body-sm text-on-surface-variant">Enf. Ana López</span>
+</div>
+</div>
+</div>
+<!-- Event 2: Diagnosis Assigned -->
+<div class="relative pl-xl pb-lg group">
+<div class="absolute left-0 w-[42px] h-[42px] flex items-center justify-center bg-background z-10">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 border border-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-primary">medical_services</span>
+</div>
+</div>
+<div class="bg-surface-container border border-outline-variant rounded-xl p-md">
+<div class="flex justify-between items-start mb-xs">
+<p class="font-body-sm text-on-surface-variant">Hoy • 11:45</p>
+<span class="font-label-caps text-primary text-[11px]">NUEVO DIAGNÓSTICO</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Dolor Agudo</h4>
+<div class="mt-xs inline-flex items-center gap-xs bg-surface-container-high rounded px-sm py-1">
+<span class="font-code-sm text-primary">NANDA 00132</span>
+</div>
+<p class="mt-sm font-body-md text-on-surface-variant">Relacionado con agentes lesivos biológicos manifestado por informe verbal de dolor.</p>
+</div>
+</div>
+<!-- Event 3: Status Change -->
+<div class="relative pl-xl pb-lg group">
+<div class="absolute left-0 w-[42px] h-[42px] flex items-center justify-center bg-background z-10">
+<div class="w-8 h-8 rounded-full bg-secondary-container/20 border border-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-secondary">sync_alt</span>
+</div>
+</div>
+<div class="bg-surface-container border border-outline-variant rounded-xl p-md">
+<div class="flex justify-between items-start mb-xs">
+<p class="font-body-sm text-on-surface-variant">Hoy • 08:30</p>
+<span class="font-label-caps text-on-surface-variant text-[11px]">CAMBIO DE ESTADO</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant font-label-caps text-[10px]">OBSERVACIÓN</span>
+<span class="material-symbols-outlined text-[16px] text-outline">arrow_forward</span>
+<span class="px-3 py-1 rounded-full bg-primary/20 text-primary-fixed-dim font-label-caps text-[10px]">TRATAMIENTO ACTIVO</span>
+</div>
+</div>
+</div>
+<!-- Event 4: Note with Image -->
+<div class="relative pl-xl pb-lg group">
+<div class="absolute left-0 w-[42px] h-[42px] flex items-center justify-center bg-background z-10">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">photo_camera</span>
+</div>
+</div>
+<div class="bg-surface-container border border-outline-variant rounded-xl p-md overflow-hidden">
+<div class="flex justify-between items-start mb-xs">
+<p class="font-body-sm text-on-surface-variant">Ayer • 20:15</p>
+<span class="font-label-caps text-on-surface-variant text-[11px]">REGISTRO VISUAL</span>
+</div>
+<p class="font-body-md text-on-surface mb-md">Documentación de herida quirúrgica post-operatoria. Limpia y sin signos de infección.</p>
+<img alt="Clinical documentation" class="w-full h-40 object-cover rounded-lg border border-outline-variant grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300" data-alt="A clean, sterile clinical macro photograph of a medical bandage or sterile dressing applied to a surface, captured with soft clinical lighting and high fidelity. The aesthetic is professional, modern, and clinical, emphasizing medical precision and hygiene. The background is slightly blurred with a neutral, light-mode palette of soft whites and teals that match a high-end medical software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvN5pmu4F-QGRJwNPN7x7xOwCbnQ6w-QBEKL8ARQxPoG36mPl2H0RTXU-LCqtR4ErlcZUuGvQVS4slzjnj73EfqJV0O_0PiVSjisbwVG1p13GfFIQs3GV2YuW5qaZVByfNu0CbTei1bZh7jUEUEcsUsLi-jji9gErk9ESj3thha8Mjcu_kr3b5gkT75EXx5zQRFkaSBeL702M8ijRML_l5YsjnEaQxWzaFa8j_K8MiNHlw6YT-ZakooLfUN-W-jN8n9PjIr1hX5Do0"/>
+</div>
+</div>
+</section>
+<!-- Load More -->
+<div class="flex justify-center py-lg">
+<button class="flex items-center gap-xs font-label-caps text-secondary py-2 px-xl rounded-full border border-secondary hover:bg-secondary/10 transition-colors">
+                CARGAR MÁS EVENTOS
+                <span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+</div>
+</main>
+<!-- FAB -->
+<button class="fixed right-6 bottom-24 w-14 h-14 bg-primary-container rounded-2xl shadow-lg flex items-center justify-center text-on-primary-container active:scale-95 transition-transform duration-100 z-40">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container px-xs pb-safe border-t border-outline-variant h-[64px]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-caps text-[10px]">BUSCAR</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary bg-primary/10 rounded-xl px-3 py-1 scale-95" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-caps text-[10px]">PACIENTES</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1" href="#">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span class="font-label-caps text-[10px]">ADMIN</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1" href="#">
+<span class="material-symbols-outlined">star</span>
+<span class="font-label-caps text-[10px]">FAVORITOS</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-[10px]">PERFIL</span>
+</a>
+</nav>
+</body></html>

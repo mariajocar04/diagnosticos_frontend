@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f5fbf5",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#410003",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#6d7a73",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#d4e3ff",
+                    "primary-fixed-dim": "#68dbae",
+                    "surface-container-low": "#eff5ef",
+                    "surface-container-high": "#e4eae4",
+                    "tertiary-fixed-dim": "#ffb3ad",
+                    "surface-variant": "#dee4de",
+                    "tertiary-container": "#b85751",
+                    "outline-variant": "#bccac1",
+                    "secondary-fixed-dim": "#a4c9ff",
+                    "on-surface": "#171d1a",
+                    "inverse-primary": "#68dbae",
+                    "primary-container": "#008560",
+                    "tertiary": "#993f3a",
+                    "tertiary-fixed": "#ffdad6",
+                    "on-secondary-container": "#00447e",
+                    "surface": "#f5fbf5",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#3d4943",
+                    "secondary-container": "#7ab3ff",
+                    "surface-bright": "#f5fbf5",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2c322e",
+                    "surface-tint": "#006c4e",
+                    "on-secondary-fixed": "#001c39",
+                    "on-tertiary-fixed-variant": "#7e2a27",
+                    "on-primary-container": "#f5fff7",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#d6dbd6",
+                    "on-tertiary-container": "#fffbff",
+                    "on-primary-fixed-variant": "#00513a",
+                    "surface-container-highest": "#dee4de",
+                    "surface-container": "#eaefea",
+                    "on-primary-fixed": "#002115",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#1960a6",
+                    "primary-fixed": "#86f8c9",
+                    "on-background": "#171d1a",
+                    "inverse-on-surface": "#ecf2ed",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#004883",
+                    "primary": "#00694c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "gutter": "16px",
+                    "margin-mobile": "16px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "xl": "32px",
+                    "touch-target-min": "48px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "clinical-code": ["JetBrains Mono"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm-mobile": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-md-mobile": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "clinical-code": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar (Shared Component Mapping) -->
+<header class="bg-surface border-b border-outline-variant flex items-center justify-between px-margin-mobile h-[72px] w-full fixed top-0 z-40">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold font-label-md text-label-md">
+                MA
+            </div>
+<div class="flex flex-col">
+<h1 class="font-headline-md-mobile text-headline-md-mobile text-primary">Hola, Manuel</h1>
+<span class="font-label-md text-label-md text-on-surface-variant">TICOS Health</span>
+</div>
+</div>
+<div class="bg-primary/10 px-3 py-1 rounded-full">
+<span class="font-label-md text-label-md text-primary">Enfermero</span>
+</div>
+</header>
+<main class="flex-1 mt-[72px] mb-[140px] px-margin-mobile pt-lg flex flex-col gap-lg">
+<!-- Patient Header Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-md">
+<div class="w-[64px] h-[64px] rounded-full bg-secondary flex items-center justify-center text-on-secondary font-headline-lg-mobile text-headline-lg-mobile">
+                        JR
+                    </div>
+<div>
+<h2 class="font-headline-md-mobile text-headline-md-mobile text-on-surface">Julia Ramírez</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Mujer, 68 años • Hab. 402-B</p>
+</div>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-outline">arrow_forward_ios</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-sm pt-sm border-t border-outline-variant">
+<div>
+<span class="font-label-md text-label-md text-outline uppercase block">Estado</span>
+<span class="font-body-md text-body-md text-primary font-semibold">Estable</span>
+</div>
+<div>
+<span class="font-label-md text-label-md text-outline uppercase block">Ingreso</span>
+<span class="font-body-md text-body-md text-on-surface-variant">12 Oct 2023</span>
+</div>
+</div>
+</section>
+<!-- Tabs Navigation -->
+<nav class="flex border-b border-outline-variant">
+<button class="flex-1 pb-3 text-on-surface-variant font-label-md text-label-md opacity-60">GENERAL</button>
+<button class="flex-1 pb-3 text-on-surface-variant font-label-md text-label-md opacity-60">SIGNOS</button>
+<button class="flex-1 pb-3 text-primary border-b-2 border-primary font-label-md text-label-md font-bold">NOTAS</button>
+<button class="flex-1 pb-3 text-on-surface-variant font-label-md text-label-md opacity-60">DIAGNÓSTICOS</button>
+</nav>
+<!-- Nursing Notes List -->
+<section class="flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm-mobile text-headline-sm-mobile text-on-surface">Historial de Notas</h3>
+<span class="font-label-md text-label-md text-outline">5 notas hoy</span>
+</div>
+<!-- Note Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">account_circle</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Enfermera Elena Castro</span>
+</div>
+<span class="font-clinical-code text-clinical-code text-primary">14:30</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                    Paciente presenta mejoría en la frecuencia respiratoria. Se administró medicación según protocolo. Se mantiene observación constante por riesgo de caída.
+                </p>
+<div class="flex gap-xs">
+<span class="bg-primary/5 text-primary text-[10px] font-bold px-2 py-0.5 rounded uppercase">Estable</span>
+<span class="bg-secondary/5 text-secondary text-[10px] font-bold px-2 py-0.5 rounded uppercase">Control</span>
+</div>
+</div>
+<!-- Note Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">account_circle</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Enfermero Manuel Arias</span>
+</div>
+<span class="font-clinical-code text-clinical-code text-primary">11:15</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                    Cambio de vendajes realizado en zona lumbar. Herida con buena evolución, sin signos de infección aparente. Se reporta leve dolor a la palpación (EVA 3/10).
+                </p>
+</div>
+<!-- Note Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">account_circle</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Enfermera Elena Castro</span>
+</div>
+<span class="font-clinical-code text-clinical-code text-primary">08:45</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                    Recepción de turno. Paciente descansó adecuadamente. Signos vitales dentro de los rangos normales para su patología. Se inicia hidratación parenteral.
+                </p>
+<div class="flex gap-xs">
+<span class="bg-error-container text-on-error-container text-[10px] font-bold px-2 py-0.5 rounded uppercase">Hidratación</span>
+</div>
+</div>
+<!-- Illustrative placeholder for depth -->
+<div class="h-4 bg-transparent"></div>
+</section>
+</main>
+<!-- Sticky Bottom Bar (Specific Task Mandate) -->
+<footer class="fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant p-margin-mobile flex gap-md z-50 shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+<button class="flex-1 bg-primary text-on-primary h-[48px] rounded-lg flex items-center justify-center gap-xs font-headline-sm-mobile text-headline-sm-mobile active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">add</span>
+            Agregar nota
+        </button>
+<button class="w-[48px] h-[48px] border border-secondary text-secondary rounded-lg flex items-center justify-center hover:bg-secondary/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</button>
+</footer>
+<!-- BottomNavBar (Shared Component mapping) - Only visible if not focus journey, but usually hidden on details screens. Provided for shell context -->
+<div class="hidden md:flex fixed bottom-0 w-full h-[64px] bg-surface border-t border-outline-variant justify-around items-center">
+<!-- Not rendered as per Destination Rule: Details page is task-focused -->
+</div>
+</body></html>

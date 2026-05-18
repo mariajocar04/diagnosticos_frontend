@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f5fbf5",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#410003",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#6d7a73",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#d4e3ff",
+                        "primary-fixed-dim": "#68dbae",
+                        "surface-container-low": "#eff5ef",
+                        "surface-container-high": "#e4eae4",
+                        "tertiary-fixed-dim": "#ffb3ad",
+                        "surface-variant": "#dee4de",
+                        "tertiary-container": "#b85751",
+                        "outline-variant": "#bccac1",
+                        "secondary-fixed-dim": "#a4c9ff",
+                        "on-surface": "#171d1a",
+                        "inverse-primary": "#68dbae",
+                        "primary-container": "#008560",
+                        "tertiary": "#993f3a",
+                        "tertiary-fixed": "#ffdad6",
+                        "on-secondary-container": "#00447e",
+                        "surface": "#f5fbf5",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#3d4943",
+                        "secondary-container": "#7ab3ff",
+                        "surface-bright": "#f5fbf5",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#2c322e",
+                        "surface-tint": "#006c4e",
+                        "on-secondary-fixed": "#001c39",
+                        "on-tertiary-fixed-variant": "#7e2a27",
+                        "on-primary-container": "#f5fff7",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d6dbd6",
+                        "on-tertiary-container": "#fffbff",
+                        "on-primary-fixed-variant": "#00513a",
+                        "surface-container-highest": "#dee4de",
+                        "surface-container": "#eaefea",
+                        "on-primary-fixed": "#002115",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#1960a6",
+                        "primary-fixed": "#86f8c9",
+                        "on-background": "#171d1a",
+                        "inverse-on-surface": "#ecf2ed",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004883",
+                        "primary": "#00694c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px",
+                        "xs": "8px",
+                        "base": "4px",
+                        "sm": "12px",
+                        "xl": "32px",
+                        "touch-target-min": "48px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "clinical-code": ["JetBrains Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-sm-mobile": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md-mobile": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "clinical-code": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline sticky top-0 z-50 flex items-center justify-between px-margin-mobile h-[72px] w-full">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-on-secondary font-headline-sm text-headline-sm">
+                JS
+            </div>
+<div>
+<h1 class="text-primary dark:text-primary-fixed-dim font-headline-md-mobile text-headline-md-mobile">Hola, Juan</h1>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-secondary/10 text-secondary border border-secondary/20">
+                    Administrador
+                </span>
+</div>
+</div>
+<div class="flex items-center">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-opacity active:opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+</div>
+</header>
+<main class="px-margin-mobile pt-lg space-y-lg">
+<!-- Metrics Grid (Bento Style) -->
+<section class="grid grid-cols-2 gap-sm">
+<div class="col-span-1 bg-surface-container-lowest border border-outline-variant p-md rounded-xl">
+<div class="flex flex-col gap-base">
+<span class="material-symbols-outlined text-primary mb-xs">group</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Usuarios activos</span>
+<span class="font-headline-lg text-headline-lg text-on-surface">124</span>
+</div>
+</div>
+<div class="col-span-1 bg-surface-container-lowest border border-outline-variant p-md rounded-xl">
+<div class="flex flex-col gap-base">
+<span class="material-symbols-outlined text-secondary mb-xs">medical_services</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Pacientes hoy</span>
+<span class="font-headline-lg text-headline-lg text-on-surface">42</span>
+</div>
+</div>
+<div class="col-span-2 bg-primary-container p-md rounded-xl text-on-primary-container shadow-sm">
+<div class="flex justify-between items-center">
+<div class="flex flex-col gap-base">
+<span class="font-label-md text-label-md opacity-90 uppercase">Diagnósticos esta semana</span>
+<span class="font-headline-lg text-headline-lg">856</span>
+</div>
+<span class="material-symbols-outlined text-[40px] opacity-30">analytics</span>
+</div>
+</div>
+<div class="col-span-2 bg-surface-container-lowest border border-outline-variant p-md rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">PDFs generados</span>
+<span class="font-headline-sm text-headline-sm">2,104</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</section>
+<!-- Bar Chart Section -->
+<section class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl space-y-md">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Diagnósticos por día</h2>
+<span class="font-label-md text-label-md text-primary">Ver reporte</span>
+</div>
+<div class="h-40 flex items-end justify-between gap-xs px-xs">
+<div class="flex flex-col items-center gap-xs w-full">
+<div class="w-full bg-primary/20 rounded-t-sm h-[40%]"></div>
+<span class="text-[10px] font-bold text-outline">LU</span>
+</div>
+<div class="flex flex-col items-center gap-xs w-full">
+<div class="w-full bg-primary/40 rounded-t-sm h-[65%]"></div>
+<span class="text-[10px] font-bold text-outline">MA</span>
+</div>
+<div class="flex flex-col items-center gap-xs w-full">
+<div class="w-full bg-primary/30 rounded-t-sm h-[50%]"></div>
+<span class="text-[10px] font-bold text-outline">MI</span>
+</div>
+<div class="flex flex-col items-center gap-xs w-full">
+<div class="w-full bg-primary rounded-t-sm h-[90%]"></div>
+<span class="text-[10px] font-bold text-outline">JU</span>
+</div>
+<div class="flex flex-col items-center gap-xs w-full">
+<div class="w-full bg-primary/60 rounded-t-sm h-[75%]"></div>
+<span class="text-[10px] font-bold text-outline">VI</span>
+</div>
+<div class="flex flex-col items-center gap-xs w-full">
+<div class="w-full bg-outline-variant rounded-t-sm h-[20%]"></div>
+<span class="text-[10px] font-bold text-outline">SA</span>
+</div>
+<div class="flex flex-col items-center gap-xs w-full">
+<div class="w-full bg-outline-variant rounded-t-sm h-[15%]"></div>
+<span class="text-[10px] font-bold text-outline">DO</span>
+</div>
+</div>
+</section>
+<!-- Recent Activity -->
+<section class="space-y-sm pb-8">
+<h2 class="font-headline-sm text-headline-sm text-on-surface px-base">Actividad reciente</h2>
+<div class="space-y-base">
+<!-- Activity Item -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface"><span class="font-bold">Ana López</span> registró un nuevo paciente</p>
+<p class="font-label-md text-label-md text-outline">Hace 12 min</p>
+</div>
+</div>
+<!-- Activity Item -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface">Reporte semanal PDF generado</p>
+<p class="font-label-md text-label-md text-outline">Hace 45 min</p>
+</div>
+</div>
+<!-- Activity Item -->
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface">Intento de acceso no autorizado bloqueado</p>
+<p class="font-label-md text-label-md text-outline">Hace 2 horas</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface dark:bg-surface-dim px-xs pb-safe h-[64px] border-t border-outline-variant dark:border-outline">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-md text-label-md">Buscar</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md text-label-md">Pacientes</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim bg-primary-container/10 rounded-xl px-3 py-1 transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
+<span class="font-label-md text-label-md">Admin</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined">star</span>
+<span class="font-label-md text-label-md">Favoritos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Perfil</span>
+</a>
+</nav>
+</body></html>

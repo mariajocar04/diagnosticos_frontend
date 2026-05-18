@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f5fbf5",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#410003",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#6d7a73",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#d4e3ff",
+                        "primary-fixed-dim": "#68dbae",
+                        "surface-container-low": "#eff5ef",
+                        "surface-container-high": "#e4eae4",
+                        "tertiary-fixed-dim": "#ffb3ad",
+                        "surface-variant": "#dee4de",
+                        "tertiary-container": "#b85751",
+                        "outline-variant": "#bccac1",
+                        "secondary-fixed-dim": "#a4c9ff",
+                        "on-surface": "#171d1a",
+                        "inverse-primary": "#68dbae",
+                        "primary-container": "#008560",
+                        "tertiary": "#993f3a",
+                        "tertiary-fixed": "#ffdad6",
+                        "on-secondary-container": "#00447e",
+                        "surface": "#f5fbf5",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#3d4943",
+                        "secondary-container": "#7ab3ff",
+                        "surface-bright": "#f5fbf5",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#2c322e",
+                        "surface-tint": "#006c4e",
+                        "on-secondary-fixed": "#001c39",
+                        "on-tertiary-fixed-variant": "#7e2a27",
+                        "on-primary-container": "#f5fff7",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d6dbd6",
+                        "on-tertiary-container": "#fffbff",
+                        "on-primary-fixed-variant": "#00513a",
+                        "surface-container-highest": "#dee4de",
+                        "surface-container": "#eaefea",
+                        "on-primary-fixed": "#002115",
+                        "on-tertiary": "#ffffff",
+                        "secondary": "#1960a6",
+                        "primary-fixed": "#86f8c9",
+                        "on-background": "#171d1a",
+                        "inverse-on-surface": "#ecf2ed",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004883",
+                        "primary": "#00694c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px",
+                        "xs": "8px",
+                        "base": "4px",
+                        "sm": "12px",
+                        "xl": "32px",
+                        "touch-target-min": "48px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "clinical-code": ["JetBrains Mono"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-sm-mobile": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md-mobile": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "clinical-code": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim flex items-center justify-between px-margin-mobile h-[72px] w-full docked full-width top-0 border-b border-outline-variant dark:border-outline sticky top-0 z-40">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-on-secondary font-headline-sm text-headline-sm">
+                JS
+            </div>
+<h1 class="font-headline-md-mobile text-headline-md-mobile text-primary dark:text-primary-fixed-dim">Hola, Juan</h1>
+</div>
+<div class="flex items-center gap-xs">
+<span class="bg-primary-container/10 text-primary px-3 py-1 rounded-full font-label-md text-label-md">Enfermero</span>
+</div>
+</header>
+<main class="flex-grow p-margin-mobile pb-24">
+<!-- Header Section -->
+<div class="flex items-center justify-between mb-lg">
+<div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">Gestión de usuarios</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Administra el personal clínico y accesos</p>
+</div>
+<button class="w-12 h-12 rounded-xl bg-primary-container text-on-primary-container flex items-center justify-center shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+<!-- Search & Filter Bar -->
+<div class="mb-lg flex gap-sm">
+<div class="flex-grow relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 h-12 bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:border-primary font-body-md" placeholder="Buscar por nombre o email..." type="text"/>
+</div>
+<button class="px-4 h-12 bg-surface-container-low border border-outline-variant rounded-lg flex items-center gap-xs text-on-surface-variant font-label-md">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+<!-- User Grid / List -->
+<div class="space-y-sm">
+<!-- User Card 1: Enfermero -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex items-center gap-md active:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="relative">
+<img alt="User Avatar" class="w-12 h-12 rounded-full object-cover" data-alt="A professional portrait of a male doctor in his late 30s wearing a clean white clinical coat. The setting is a brightly lit medical office with a blurred hospital corridor in the background. The lighting is soft and clinical, emphasizing a trustworthy and precise medical environment. The color palette is dominated by clean whites, soft teals, and professional blues, reflecting a modern healthcare aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqpdn9vIzlVdv8719f9VK4CTmlakaaW1gDcxVHPSVoQSB13E7CnsKuJWdMq_5jtYy23QO8DZApr2Z1pnkf_FxKaJrm5a251B3suIoJ5KddHFPD1xjZZSSnbWmaGR2_IBpYIvY5k0BkoApt-2F3ce2g4ihTryFeg6yIjXeBH2t3gTK1VjyTOs-GlM3vbNIwxPCHtbK_5bKNH2fytdShQhC7RycGszpXVoRacUrEVd_MIHQaPD9JrW3Z0L87RppHaklG_1XnLNm30PT8"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-primary border-2 border-surface-container-lowest rounded-full"></span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Dr. Alejandro Ruiz</h3>
+<span class="bg-[#1D9E75]/10 text-[#1D9E75] px-2 py-0.5 rounded-full font-label-md text-[10px] tracking-wider uppercase">Enfermero</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">a.ruiz@ticos.health</p>
+<div class="flex items-center gap-xs mt-base">
+<span class="font-label-md text-label-md text-primary">Activo</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-active:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- User Card 2: Administrador -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex items-center gap-md active:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="relative">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-headline-sm">
+                        MV
+                    </div>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-primary border-2 border-surface-container-lowest rounded-full"></span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Marta Valenzuela</h3>
+<span class="bg-[#185FA5]/10 text-[#185FA5] px-2 py-0.5 rounded-full font-label-md text-[10px] tracking-wider uppercase">Administrador</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">m.valenzuela@ticos.health</p>
+<div class="flex items-center gap-xs mt-base">
+<span class="font-label-md text-label-md text-primary">Activo</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-active:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- User Card 3: Inactivo -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex items-center gap-md active:bg-surface-container-high transition-colors cursor-pointer group opacity-75">
+<div class="relative">
+<img alt="User Avatar" class="w-12 h-12 rounded-full object-cover grayscale" data-alt="A professional headshot of a female medical administrator in her 40s with a confident expression. The background is a minimalist, softly lit clinical office environment. The lighting is diffused and even, creating a clean, modern look. The image emphasizes professional reliability with a palette of soft grays, whites, and corporate blues. High-fidelity digital photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuvxBF7XMCNetD9xrFHXnPw1T_-m0yGeJPn_mq9EmQj1vKsjJDWW8B6wPN2KCmNI_EHdjlEtqnjt0h8T7EnJoD-3KD4ORuTljKyC-Q_cPK8unYDjXw5swTQ5rncqJ6ef6GaLQ_x-SBS9dCE13q7E_EGrnP-O6hLSoKhO98Cn0T7pM43UNGGVposOAghJxvpr_gWpFcVF6hGp8JPrCR-gKeZb_Qb7q2aKBuJOWMPn5DgNzOdn56hAJDYWBz_NzZOufXLPmYMmoICbE-"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-outline border-2 border-surface-container-lowest rounded-full"></span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Lucía Méndez</h3>
+<span class="bg-[#1D9E75]/10 text-[#1D9E75] px-2 py-0.5 rounded-full font-label-md text-[10px] tracking-wider uppercase">Enfermero</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">l.mendez@ticos.health</p>
+<div class="flex items-center gap-xs mt-base">
+<span class="font-label-md text-label-md text-outline">Inactivo</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-active:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- User Card 4: Enfermero -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex items-center gap-md active:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="relative">
+<img alt="User Avatar" class="w-12 h-12 rounded-full object-cover" data-alt="A close-up portrait of a young male clinician with glasses, looking friendly and professional. He is in a brightly lit medical setting with clinical equipment blurred in the background. The lighting is sharp yet flattering, with a modern, high-contrast aesthetic. Colors include deep medical teals, crisp whites, and neutral gray tones, conveying expertise and cleanliness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_O_wy8txQP3uexbI8LlN7CnCNbTuO3K3MnRk7ebs3yH7BISk77bK_35RucbR-EgEbeDIgcENLmfbOtQF2R9pMgOPmKQqal67D2LPqv_9fiLcAZurrVAbnsoUggG-XFKMyvaUHoL-lxG6Y7InlPyF9Y7Sq3Lr6pKkjOm5rw7P7eElrhjme3K-irpoG699QKlJ63MLk1BHTCYihiZw5Sw-dAOArQx1ukPa7ZaJXLta5kjF9feEVUufROwD7rdX6WLZUfiXZQmm7Ch7s"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-primary border-2 border-surface-container-lowest rounded-full"></span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Roberto Gómez</h3>
+<span class="bg-[#1D9E75]/10 text-[#1D9E75] px-2 py-0.5 rounded-full font-label-md text-[10px] tracking-wider uppercase">Enfermero</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">r.gomez@ticos.health</p>
+<div class="flex items-center gap-xs mt-base">
+<span class="font-label-md text-label-md text-primary">Activo</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-active:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Quick Stats Bento -->
+<div class="mt-xl grid grid-cols-2 gap-sm">
+<div class="bg-primary-container/5 border border-primary-container/20 rounded-xl p-md">
+<span class="material-symbols-outlined text-primary mb-xs" data-icon="how_to_reg">how_to_reg</span>
+<div class="font-headline-lg text-headline-lg text-primary">24</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Usuarios Activos</div>
+</div>
+<div class="bg-secondary-container/5 border border-secondary-container/20 rounded-xl p-md">
+<span class="material-symbols-outlined text-secondary mb-xs" data-icon="admin_panel_settings">admin_panel_settings</span>
+<div class="font-headline-lg text-headline-lg text-secondary">4</div>
+<div class="font-label-md text-label-md text-on-surface-variant">Administradores</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface dark:bg-surface-dim px-xs pb-safe border-t border-outline-variant dark:border-outline h-[64px]">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low px-3 py-1">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-md text-label-md">Buscar</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low px-3 py-1">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-md text-label-md">Pacientes</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim bg-primary-container/10 rounded-xl px-3 py-1 scale-95 transition-transform duration-100">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
+<span class="font-label-md text-label-md">Admin</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low px-3 py-1">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="font-label-md text-label-md">Favoritos</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low px-3 py-1">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Perfil</span>
+</button>
+</nav>
+</body></html>

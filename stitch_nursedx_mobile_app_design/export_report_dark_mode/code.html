@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#a2c9ff",
+                        "secondary-container": "#0274cb",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error": "#690005",
+                        "surface-container": "#201f1f",
+                        "outline": "#86948b",
+                        "on-secondary-container": "#f7f8ff",
+                        "error-container": "#93000a",
+                        "primary-container": "#23c18f",
+                        "tertiary-container": "#ff8978",
+                        "on-primary-fixed-variant": "#005139",
+                        "on-tertiary-fixed-variant": "#80291f",
+                        "on-tertiary": "#61120b",
+                        "secondary-fixed": "#d3e4ff",
+                        "tertiary-fixed": "#ffdad5",
+                        "surface-container-highest": "#353534",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed": "#410000",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "on-primary": "#003827",
+                        "surface-dim": "#131313",
+                        "on-secondary-fixed-variant": "#004881",
+                        "surface": "#131313",
+                        "error": "#ffb4ab",
+                        "primary": "#4edeaa",
+                        "surface-tint": "#4edeaa",
+                        "on-primary-fixed": "#002115",
+                        "primary-fixed-dim": "#4edeaa",
+                        "inverse-on-surface": "#313030",
+                        "inverse-primary": "#006c4d",
+                        "on-primary-container": "#004933",
+                        "surface-container-high": "#2a2a2a",
+                        "on-surface-variant": "#bbcac1",
+                        "surface-container-low": "#1c1b1b",
+                        "on-error-container": "#ffdad6",
+                        "secondary": "#a2c9ff",
+                        "surface-variant": "#353534",
+                        "on-secondary-fixed": "#001c38",
+                        "surface-bright": "#393939",
+                        "on-secondary": "#00315c",
+                        "on-surface": "#e5e2e1",
+                        "outline-variant": "#3c4a43",
+                        "primary-fixed": "#6efbc4",
+                        "on-tertiary-container": "#752118",
+                        "on-background": "#e5e2e1",
+                        "tertiary": "#ffb4a8",
+                        "background": "#131313"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xs": "4px",
+                        "margin-desktop": "32px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "code-md": ["JetBrains Mono"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "label-caps": ["Inter"],
+                        "headline-lg": ["Manrope"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "code-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "code-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex flex-col font-body-md text-on-surface">
+<header class="bg-surface border-b border-outline-variant flex items-center justify-between px-margin-mobile h-[72px] w-full sticky top-0 z-40">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold">
+                JS
+            </div>
+<div class="flex flex-col">
+<h1 class="font-headline-md text-primary">Exportar reporte PDF</h1>
+<span class="font-body-sm text-on-surface-variant">Juan Sánchez</span>
+</div>
+</div>
+<div class="flex items-center">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-caps">Enfermero</span>
+</div>
+</header>
+<main class="flex-1 px-margin-mobile py-lg max-w-md mx-auto w-full space-y-lg">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-xl">
+<div class="p-md bg-surface-container-low border-b border-outline-variant flex justify-between items-center">
+<span class="font-headline-md text-on-surface text-lg">Previsualización de Reporte</span>
+<span class="material-symbols-outlined text-outline" data-icon="description">description</span>
+</div>
+<div class="p-md space-y-md">
+<div class="space-y-sm">
+<label class="font-label-caps text-outline uppercase block">Secciones Incluidas</label>
+<div class="flex items-center justify-between p-sm bg-surface-container rounded-lg border border-outline-variant/30">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="person">person</span>
+<span class="font-body-md text-on-surface">Datos del paciente</span>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" data-weight="fill">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-sm bg-surface-container rounded-lg border border-outline-variant/30">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="clinical_notes">clinical_notes</span>
+<span class="font-body-md text-on-surface">Diagnósticos (NANDA)</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="text-on-surface-variant text-xs">3 registros</span>
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" data-weight="fill">check_circle</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-sm bg-surface-container rounded-lg border border-outline-variant/30">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="history_edu">history_edu</span>
+<span class="font-body-md text-on-surface">Notas de enfermería</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="text-on-surface-variant text-xs">Últimas 24h</span>
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" data-weight="fill">check_circle</span>
+</div>
+</div>
+</div>
+<div class="relative aspect-[3/4] bg-surface-container-high border border-outline-variant rounded shadow-inner p-lg overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-surface-container-lowest/10 pointer-events-none"></div>
+<div class="space-y-base opacity-40">
+<div class="h-4 w-1/3 bg-outline rounded"></div>
+<div class="h-2 w-full bg-outline/30 rounded"></div>
+<div class="h-2 w-5/6 bg-outline/30 rounded"></div>
+<div class="pt-sm space-y-xs">
+<div class="h-8 w-full border border-outline/20 rounded flex items-center px-xs gap-xs">
+<div class="h-4 w-4 rounded-full bg-primary/20"></div>
+<div class="h-2 w-1/2 bg-outline/40 rounded"></div>
+</div>
+<div class="h-8 w-full border border-outline/20 rounded flex items-center px-xs gap-xs">
+<div class="h-4 w-4 rounded-full bg-primary/20"></div>
+<div class="h-2 w-2/3 bg-outline/40 rounded"></div>
+</div>
+</div>
+<div class="pt-sm h-24 w-full bg-surface-container-low rounded"></div>
+<div class="h-2 w-full bg-outline/30 rounded"></div>
+<div class="h-2 w-3/4 bg-outline/30 rounded"></div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-surface/90 backdrop-blur-sm border border-outline-variant p-sm rounded-lg flex flex-col items-center gap-xs shadow-2xl">
+<img alt="PDF Preview Thumbnail" class="w-12 h-12 object-cover rounded opacity-80" data-alt="A macro photograph of a professional medical report document being printed, showing crisp black typography on premium white paper. The lighting is bright and clinical, with a soft shallow depth of field focusing on the header section. The overall aesthetic is clean, precise, and authoritative, consistent with a high-fidelity clinical health ecosystem interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXooPBI1xB0_AsqDNAzj3a_s_kGSeGwimiueUiLLxWVxSA_iwG_FxIDsA5ieIuU66vfCZkqvI5H4OtgL7xqSeUefO-VIB05IwluZMmBBRFH8D-dH0a3Uz12HaXX_TeBoFTTJ9oZ2qOeAymDmyU1dvJOLijQP8yObSWXwOnA8Uil75ljSY-F0tpmvHiO3018GUQc5TnrnGrYImIiAfNkgHhNZetZpMYWFPNgeOfZ8ecWCoKbcAhTdQvKt7gWu8AubRzNMyJjlprk5iU"/>
+<span class="font-label-caps text-on-surface">VISTA RÁPIDA</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-md">
+<button class="w-full h-[56px] bg-primary text-on-primary rounded-xl font-headline-md flex items-center justify-center gap-sm shadow-lg active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                Generar PDF
+            </button>
+<a class="flex items-center justify-center gap-xs text-secondary font-headline-md text-base hover:underline decoration-2 underline-offset-4 py-xs" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span>
+                Vista previa del reporte
+            </a>
+</div>
+</main>
+<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface px-xs pb-safe border-t border-outline-variant h-[64px]">
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low px-3 py-1 cursor-pointer transition-colors">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-caps">Buscar</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low px-3 py-1 cursor-pointer transition-colors">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-caps">Pacientes</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary bg-primary-container/10 rounded-xl px-3 py-1 scale-95 transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings" data-weight="fill">admin_panel_settings</span>
+<span class="font-label-caps">Admin</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low px-3 py-1 cursor-pointer transition-colors">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="font-label-caps">Favoritos</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low px-3 py-1 cursor-pointer transition-colors">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps">Perfil</span>
+</div>
+</footer>
+<div class="h-[64px] w-full"></div>
+</body></html>

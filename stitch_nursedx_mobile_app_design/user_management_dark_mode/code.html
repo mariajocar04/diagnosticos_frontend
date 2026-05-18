@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#a2c9ff",
+                        "secondary-container": "#0274cb",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error": "#690005",
+                        "surface-container": "#201f1f",
+                        "outline": "#86948b",
+                        "on-secondary-container": "#f7f8ff",
+                        "error-container": "#93000a",
+                        "primary-container": "#23c18f",
+                        "tertiary-container": "#ff8978",
+                        "on-primary-fixed-variant": "#005139",
+                        "on-tertiary-fixed-variant": "#80291f",
+                        "on-tertiary": "#61120b",
+                        "secondary-fixed": "#d3e4ff",
+                        "tertiary-fixed": "#ffdad5",
+                        "surface-container-highest": "#353534",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed": "#410000",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "on-primary": "#003827",
+                        "surface-dim": "#131313",
+                        "on-secondary-fixed-variant": "#004881",
+                        "surface": "#131313",
+                        "error": "#ffb4ab",
+                        "primary": "#4edeaa",
+                        "surface-tint": "#4edeaa",
+                        "on-primary-fixed": "#002115",
+                        "primary-fixed-dim": "#4edeaa",
+                        "inverse-on-surface": "#313030",
+                        "inverse-primary": "#006c4d",
+                        "on-primary-container": "#004933",
+                        "surface-container-high": "#2a2a2a",
+                        "on-surface-variant": "#bbcac1",
+                        "surface-container-low": "#1c1b1b",
+                        "on-error-container": "#ffdad6",
+                        "secondary": "#a2c9ff",
+                        "surface-variant": "#353534",
+                        "on-secondary-fixed": "#001c38",
+                        "surface-bright": "#393939",
+                        "on-secondary": "#00315c",
+                        "on-surface": "#e5e2e1",
+                        "outline-variant": "#3c4a43",
+                        "primary-fixed": "#6efbc4",
+                        "on-tertiary-container": "#752118",
+                        "on-background": "#e5e2e1",
+                        "tertiary": "#ffb4a8",
+                        "background": "#131313"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xs": "4px",
+                        "margin-desktop": "32px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "code-md": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "label-caps": ["Inter"],
+                        "headline-lg": ["Manrope"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "code-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: 100dvh;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface-container flex items-center justify-between px-margin-mobile h-[72px] w-full sticky top-0 z-40 border-b border-outline-variant">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-headline-md text-[16px]">
+                JS
+            </div>
+<h1 class="font-headline-md text-primary">Hola, Juan</h1>
+</div>
+<div class="flex items-center gap-xs">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-caps">Enfermero</span>
+</div>
+</header>
+<main class="flex-grow p-margin-mobile pb-24">
+<!-- Header Section -->
+<div class="flex items-center justify-between mb-lg">
+<div>
+<h2 class="font-headline-lg text-on-surface text-[24px]">Gestión de usuarios</h2>
+<p class="font-body-md text-on-surface-variant">Administra el personal clínico y accesos</p>
+</div>
+<button class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+<!-- Search & Filter Bar -->
+<div class="mb-lg flex gap-sm">
+<div class="flex-grow relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 h-12 bg-surface-container-low border border-outline-variant rounded-lg focus:outline-none focus:border-primary font-body-md text-on-surface" placeholder="Buscar por nombre..." type="text"/>
+</div>
+<button class="px-4 h-12 bg-surface-container-low border border-outline-variant rounded-lg flex items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+<!-- User Grid / List -->
+<div class="space-y-sm">
+<!-- User Card 1: Enfermero -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-md flex items-center gap-md active:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="relative">
+<img alt="Dr. Alejandro Ruiz" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqpdn9vIzlVdv8719f9VK4CTmlakaaW1gDcxVHPSVoQSB13E7CnsKuJWdMq_5jtYy23QO8DZApr2Z1pnkf_FxKaJrm5a251B3suIoJ5KddHFPD1xjZZSSnbWmaGR2_IBpYIvY5k0BkoApt-2F3ce2g4ihTryFeg6yIjXeBH2t3gTK1VjyTOs-GlM3vbNIwxPCHtbK_5bKNH2fytdShQhC7RycGszpXVoRacUrEVd_MIHQaPD9JrW3Z0L87RppHaklG_1XnLNm30PT8"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-primary border-2 border-surface-container-low rounded-full"></span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-[16px] text-on-surface">Dr. Alejandro Ruiz</h3>
+<span class="bg-primary-container/20 text-primary px-2 py-0.5 rounded-md font-label-caps text-[10px]">ENFERMERO</span>
+</div>
+<p class="font-body-sm text-on-surface-variant">a.ruiz@ticos.health</p>
+<div class="flex items-center gap-xs mt-base">
+<span class="font-label-caps text-[10px] text-primary">● Activo</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-active:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- User Card 2: Administrador -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-md flex items-center gap-md active:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="relative">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-headline-md text-[16px]">
+                        MV
+                    </div>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-primary border-2 border-surface-container-low rounded-full"></span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-[16px] text-on-surface">Marta Valenzuela</h3>
+<span class="bg-secondary-container/20 text-secondary px-2 py-0.5 rounded-md font-label-caps text-[10px]">ADMINISTRADOR</span>
+</div>
+<p class="font-body-sm text-on-surface-variant">m.valenzuela@ticos.health</p>
+<div class="flex items-center gap-xs mt-base">
+<span class="font-label-caps text-[10px] text-primary">● Activo</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-active:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- User Card 3: Inactivo -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-md flex items-center gap-md active:bg-surface-container-high transition-colors cursor-pointer group opacity-60">
+<div class="relative">
+<img alt="Lucía Méndez" class="w-12 h-12 rounded-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuvxBF7XMCNetD9xrFHXnPw1T_-m0yGeJPn_mq9EmQj1vKsjJDWW8B6wPN2KCmNI_EHdjlEtqnjt0h8T7EnJoD-3KD4ORuTljKyC-Q_cPK8unYDjXw5swTQ5rncqJ6ef6GaLQ_x-SBS9dCE13q7E_EGrnP-O6hLSoKhO98Cn0T7pM43UNGGVposOAghJxvpr_gWpFcVF6hGp8JPrCR-gKeZb_Qb7q2aKBuJOWMPn5DgNzOdn56hAJDYWBz_NzZOufXLPmYMmoICbE-"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-outline border-2 border-surface-container-low rounded-full"></span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-[16px] text-on-surface">Lucía Méndez</h3>
+<span class="bg-outline-variant/20 text-on-surface-variant px-2 py-0.5 rounded-md font-label-caps text-[10px]">ENFERMERO</span>
+</div>
+<p class="font-body-sm text-on-surface-variant">l.mendez@ticos.health</p>
+<div class="flex items-center gap-xs mt-base">
+<span class="font-label-caps text-[10px] text-outline">○ Inactivo</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-active:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- User Card 4 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-md flex items-center gap-md active:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="relative">
+<img alt="Roberto Gómez" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_O_wy8txQP3uexbI8LlN7CnCNbTuO3K3MnRk7ebs3yH7BISk77bK_35RucbR-EgEbeDIgcENLmfbOtQF2R9pMgOPmKQqal67D2LPqv_9fiLcAZurrVAbnsoUggG-XFKMyvaUHoL-lxG6Y7InlPyF9Y7Sq3Lr6pKkjOm5rw7P7eElrhjme3K-irpoG699QKlJ63MLk1BHTCYihiZw5Sw-dAOArQx1ukPa7ZaJXLta5kjF9feEVUufROwD7rdX6WLZUfiXZQmm7Ch7s"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-primary border-2 border-surface-container-low rounded-full"></span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-[16px] text-on-surface">Roberto Gómez</h3>
+<span class="bg-primary-container/20 text-primary px-2 py-0.5 rounded-md font-label-caps text-[10px]">ENFERMERO</span>
+</div>
+<p class="font-body-sm text-on-surface-variant">r.gomez@ticos.health</p>
+<div class="flex items-center gap-xs mt-base">
+<span class="font-label-caps text-[10px] text-primary">● Activo</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-active:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Quick Stats Bento -->
+<div class="mt-xl grid grid-cols-2 gap-sm">
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-md">
+<span class="material-symbols-outlined text-primary mb-xs" data-icon="how_to_reg">how_to_reg</span>
+<div class="font-headline-lg text-primary">24</div>
+<div class="font-label-caps text-[10px] text-on-surface-variant">USUARIOS ACTIVOS</div>
+</div>
+<div class="bg-surface-container-high border border-outline-variant rounded-xl p-md">
+<span class="material-symbols-outlined text-secondary mb-xs" data-icon="admin_panel_settings">admin_panel_settings</span>
+<div class="font-headline-lg text-secondary">4</div>
+<div class="font-label-caps text-[10px] text-on-surface-variant">ADMINISTRADORES</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container border-t border-outline-variant h-[64px] pb-safe">
+<button class="flex flex-col items-center justify-center text-on-surface-variant w-full">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-caps text-[10px]">Buscar</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant w-full">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-caps text-[10px]">Pacientes</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary w-full relative">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
+<span class="font-label-caps text-[10px]">Admin</span>
+<div class="absolute -top-1 w-12 h-1 bg-primary rounded-full"></div>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant w-full">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="font-label-caps text-[10px]">Favoritos</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant w-full">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-[10px]">Perfil</span>
+</button>
+</nav>
+</body></html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#a2c9ff",
+                    "secondary-container": "#0274cb",
+                    "inverse-surface": "#e5e2e1",
+                    "on-error": "#690005",
+                    "surface-container": "#201f1f",
+                    "outline": "#86948b",
+                    "on-secondary-container": "#f7f8ff",
+                    "error-container": "#93000a",
+                    "primary-container": "#23c18f",
+                    "tertiary-container": "#ff8978",
+                    "on-primary-fixed-variant": "#005139",
+                    "on-tertiary-fixed-variant": "#80291f",
+                    "on-tertiary": "#61120b",
+                    "secondary-fixed": "#d3e4ff",
+                    "tertiary-fixed": "#ffdad5",
+                    "surface-container-highest": "#353534",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-tertiary-fixed": "#410000",
+                    "tertiary-fixed-dim": "#ffb4a8",
+                    "on-primary": "#003827",
+                    "surface-dim": "#131313",
+                    "on-secondary-fixed-variant": "#004881",
+                    "surface": "#131313",
+                    "error": "#ffb4ab",
+                    "primary": "#4edeaa",
+                    "surface-tint": "#4edeaa",
+                    "on-primary-fixed": "#002115",
+                    "primary-fixed-dim": "#4edeaa",
+                    "inverse-on-surface": "#313030",
+                    "inverse-primary": "#006c4d",
+                    "on-primary-container": "#004933",
+                    "surface-container-high": "#2a2a2a",
+                    "on-surface-variant": "#bbcac1",
+                    "surface-container-low": "#1c1b1b",
+                    "on-error-container": "#ffdad6",
+                    "secondary": "#a2c9ff",
+                    "surface-variant": "#353534",
+                    "on-secondary-fixed": "#001c38",
+                    "surface-bright": "#393939",
+                    "on-secondary": "#00315c",
+                    "on-surface": "#e5e2e1",
+                    "outline-variant": "#3c4a43",
+                    "primary-fixed": "#6efbc4",
+                    "on-tertiary-container": "#752118",
+                    "on-background": "#e5e2e1",
+                    "tertiary": "#ffb4a8",
+                    "background": "#131313"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "xs": "4px",
+                    "margin-desktop": "32px",
+                    "base": "4px",
+                    "margin-mobile": "16px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "xl": "32px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "code-md": ["JetBrains Mono"],
+                    "code-sm": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "display-lg": ["Manrope"],
+                    "headline-md": ["Manrope"],
+                    "label-caps": ["Inter"],
+                    "headline-lg": ["Manrope"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "code-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "code-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-[80px]">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-margin-mobile h-[72px] w-full bg-surface border-b border-outline-variant fixed top-0 left-0 z-50">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold">
+                JM
+            </div>
+<div>
+<h1 class="text-headline-md font-headline-md text-primary">Hola, Juan</h1>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary/20 text-primary font-bold text-[10px] uppercase tracking-wider">Enfermero</span>
+</div>
+</div>
+<button class="w-12 h-12 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="pt-[88px] px-margin-mobile">
+<!-- Section Header -->
+<div class="flex items-center justify-between mb-lg">
+<h2 class="text-headline-lg font-headline-lg text-on-surface">Mis pacientes</h2>
+<button class="w-[48px] h-[48px] flex items-center justify-center bg-primary text-on-primary rounded-xl shadow-lg shadow-primary/20 hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+<!-- Search Bar -->
+<div class="relative mb-lg">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full h-[48px] pl-12 pr-4 bg-surface-container-low border border-outline-variant rounded-lg font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" placeholder="Buscar por nombre o documento" type="text"/>
+</div>
+<!-- Patient List Container -->
+<div class="space-y-md">
+<!-- Patient Card 1 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-md flex items-center gap-md active:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="font-bold text-headline-md">JP</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-body-lg font-bold text-on-surface truncate">Juan Pérez</h3>
+<span class="text-outline text-[10px] font-bold">Hace 2h</span>
+</div>
+<p class="text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="text-outline uppercase text-[10px] font-bold">CC</span>
+<span class="font-code-md text-primary">12345</span>
+</p>
+<div class="flex items-center gap-xs mt-1">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="assignment">assignment</span>
+<span class="text-body-sm text-on-surface-variant">3 diagnósticos</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Patient Card 2 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-md flex items-center gap-md active:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="font-bold text-headline-md">MR</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-body-lg font-bold text-on-surface truncate">María Rodríguez</h3>
+<span class="text-outline text-[10px] font-bold">Hace 5h</span>
+</div>
+<p class="text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="text-outline uppercase text-[10px] font-bold">CC</span>
+<span class="font-code-md text-primary">87654</span>
+</p>
+<div class="flex items-center gap-xs mt-1">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="assignment">assignment</span>
+<span class="text-body-sm text-on-surface-variant">1 diagnóstico</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Patient Card 3 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-md flex items-center gap-md active:bg-surface-container-high transition-colors cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center flex-shrink-0 shadow-sm">
+<span class="font-bold text-headline-md">CA</span>
+</div>
+<div class="flex-grow min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-body-lg font-bold text-on-surface truncate">Carlos Arias</h3>
+<span class="text-outline text-[10px] font-bold">Ayer</span>
+</div>
+<p class="text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="text-outline uppercase text-[10px] font-bold">CC</span>
+<span class="font-code-md text-primary">55221</span>
+</p>
+<div class="flex items-center gap-xs mt-1">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="assignment">assignment</span>
+<span class="text-body-sm text-on-surface-variant">5 diagnósticos</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Empty State Divider -->
+<div class="my-xl border-t border-outline-variant relative">
+<span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-md text-label-caps text-outline">VISTA VACÍA</span>
+</div>
+<!-- Empty State Version -->
+<div class="flex flex-col items-center text-center py-xl bg-surface-container-low rounded-2xl border-2 border-dashed border-outline-variant">
+<div class="w-[200px] h-[150px] mb-lg bg-surface-container-high rounded-lg flex items-center justify-center overflow-hidden">
+<img alt="Ilustración médica" class="w-full h-full object-cover opacity-80" data-alt="A clean, minimalist 3D medical illustration featuring a soft teal and white color scheme. The composition shows a digital medical chart with a placeholder character standing beside it, looking at a magnifying glass. The lighting is bright and professional, conveying a modern clinical software environment with a sense of clarity and organization." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWj4Zo-RjwNs9LNxRfetRSv3OmFxAdr9Dn9efGHyQVXNrLfVOb_9U4iaGSXiDS9R_M9nRGR5eUx1oK7VQLshCZxqXx69yia8nezBecIM70ROojKrrA7tH-58ksdEVfA7X9ZHRH1qmqD7M-f3_TsQekOsV6NoRlEPjs82uYDm5QXgsZpeJLrV1xyB4eiMHAF4705UH9nWKHoST2xWpk00ougGY023F-n-hLn17RO1LGl0xgfwrMDluLQQlkaX_3EQ6ZL_yJ--CO2jpw"/>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface mb-xs">Aún no tienes pacientes registrados</h3>
+<p class="text-body-md text-on-surface-variant px-xl mb-lg">Comienza agregando tu primer paciente para gestionar su historial y diagnósticos NANDA.</p>
+<button class="h-[48px] px-lg bg-primary text-on-primary rounded-xl font-bold flex items-center gap-xs hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+                Registrar paciente
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface border-t border-outline-variant px-xs pb-safe h-[64px]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="text-label-caps">Buscar</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary bg-primary/10 rounded-xl px-4 py-1.5" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="text-label-caps">Pacientes</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="text-label-caps">Admin</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="text-label-caps">Favoritos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-caps">Perfil</span>
+</a>
+</nav>
+</body></html>

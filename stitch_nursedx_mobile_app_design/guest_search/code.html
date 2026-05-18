@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f5fbf5",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed": "#410003",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#6d7a73",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#d4e3ff",
+                    "primary-fixed-dim": "#68dbae",
+                    "surface-container-low": "#eff5ef",
+                    "surface-container-high": "#e4eae4",
+                    "tertiary-fixed-dim": "#ffb3ad",
+                    "surface-variant": "#dee4de",
+                    "tertiary-container": "#b85751",
+                    "outline-variant": "#bccac1",
+                    "secondary-fixed-dim": "#a4c9ff",
+                    "on-surface": "#171d1a",
+                    "inverse-primary": "#68dbae",
+                    "primary-container": "#008560",
+                    "tertiary": "#993f3a",
+                    "tertiary-fixed": "#ffdad6",
+                    "on-secondary-container": "#00447e",
+                    "surface": "#f5fbf5",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#3d4943",
+                    "secondary-container": "#7ab3ff",
+                    "surface-bright": "#f5fbf5",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2c322e",
+                    "surface-tint": "#006c4e",
+                    "on-secondary-fixed": "#001c39",
+                    "on-tertiary-fixed-variant": "#7e2a27",
+                    "on-primary-container": "#f5fff7",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#d6dbd6",
+                    "on-tertiary-container": "#fffbff",
+                    "on-primary-fixed-variant": "#00513a",
+                    "surface-container-highest": "#dee4de",
+                    "surface-container": "#eaefea",
+                    "on-primary-fixed": "#002115",
+                    "on-tertiary": "#ffffff",
+                    "secondary": "#1960a6",
+                    "primary-fixed": "#86f8c9",
+                    "on-background": "#171d1a",
+                    "inverse-on-surface": "#ecf2ed",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#004883",
+                    "primary": "#00694c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "gutter": "16px",
+                    "margin-mobile": "16px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "xl": "32px",
+                    "touch-target-min": "48px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "clinical-code": ["JetBrains Mono"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "clinical-code": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-[64px]">
+<!-- Top Navigation Shell -->
+<header class="flex items-center justify-between px-margin-mobile h-[72px] w-full bg-surface border-b border-outline-variant sticky top-0 z-50">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-headline-sm">
+                G
+            </div>
+<h1 class="font-headline-md text-headline-md text-primary">Hola, Invitado</h1>
+</div>
+<div class="flex items-center gap-xs">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-md text-label-md">Enfermero</span>
+</div>
+</header>
+<!-- Persistent Guest Banner -->
+<div class="bg-primary-container text-on-primary-container px-margin-mobile py-sm flex flex-col sm:flex-row items-center justify-between gap-sm">
+<p class="font-body-md text-body-md text-center sm:text-left">Estás navegando como invitado. Inicia sesión para guardar pacientes y exportar reportes.</p>
+<button class="bg-surface text-primary px-4 py-2 rounded-lg font-headline-sm text-headline-sm border border-primary transition-all active:scale-95">
+            Iniciar sesión
+        </button>
+</div>
+<main class="px-margin-mobile py-lg max-w-4xl mx-auto">
+<!-- Search & Filters -->
+<div class="space-y-lg">
+<div class="relative">
+<label class="font-label-md text-label-md text-on-surface-variant block mb-base">Búsqueda Global de Diagnósticos</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-[56px] pl-[48px] pr-md bg-surface border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline/60 font-body-lg text-body-lg" placeholder="Buscar por NANDA, NIC, NOC o palabra clave..." type="text"/>
+</div>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-sm overflow-x-auto no-scrollbar pb-xs">
+<button class="flex-shrink-0 px-4 py-2 bg-primary text-on-primary rounded-full font-label-md text-label-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">tune</span> Todos
+                </button>
+<button class="flex-shrink-0 px-4 py-2 bg-surface-container border border-outline-variant text-on-surface-variant rounded-full font-label-md text-label-md">Dominio 1</button>
+<button class="flex-shrink-0 px-4 py-2 bg-surface-container border border-outline-variant text-on-surface-variant rounded-full font-label-md text-label-md">Dominio 2</button>
+<button class="flex-shrink-0 px-4 py-2 bg-surface-container border border-outline-variant text-on-surface-variant rounded-full font-label-md text-label-md">Recientes</button>
+<button class="flex-shrink-0 px-4 py-2 bg-surface-container border border-outline-variant text-on-surface-variant rounded-full font-label-md text-label-md">Críticos</button>
+</div>
+</div>
+<!-- Content Canvas: Diagnosis Cards (Asymmetric Layout) -->
+<div class="mt-xl grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Diagnosis Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-sm hover:border-primary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start">
+<span class="font-clinical-code text-clinical-code text-primary bg-primary/5 px-2 py-1 rounded">NANDA 00132</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward_ios</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Dolor agudo relacionado con agentes lesivos biológicos</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Experiencia sensorial y emocional desagradable asociada a lesión tisular real o potencial.</p>
+<div class="mt-md pt-md border-t border-outline-variant/30 flex gap-xs flex-wrap">
+<span class="bg-secondary-container/20 text-secondary text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Fisiológico</span>
+<span class="bg-surface-variant text-on-surface-variant text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Prioridad Alta</span>
+</div>
+</div>
+<!-- Diagnosis Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-sm hover:border-primary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start">
+<span class="font-clinical-code text-clinical-code text-primary bg-primary/5 px-2 py-1 rounded">NANDA 00004</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward_ios</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Riesgo de infección</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Aumento del riesgo de ser invadido por organismos patógenos en el entorno clínico.</p>
+<div class="mt-md pt-md border-t border-outline-variant/30 flex gap-xs flex-wrap">
+<span class="bg-secondary-container/20 text-secondary text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Seguridad</span>
+<span class="bg-surface-variant text-on-surface-variant text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Preventivo</span>
+</div>
+</div>
+<!-- Diagnosis Card 3 (Bento-style Full Width on Mobile) -->
+<div class="md:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col md:flex-row gap-lg hover:border-primary transition-colors cursor-pointer group">
+<div class="flex-1 space-y-sm">
+<div class="flex justify-between items-start">
+<span class="font-clinical-code text-clinical-code text-primary bg-primary/5 px-2 py-1 rounded">NANDA 00085</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Deterioro de la movilidad física</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Limitación del movimiento físico independiente e intencionado del cuerpo o de una o más extremidades.</p>
+</div>
+<div class="flex flex-col justify-between items-end">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">star</span>
+<div class="mt-md pt-md border-t border-outline-variant/30 md:border-t-0 flex gap-xs flex-wrap justify-end">
+<span class="bg-secondary-container/20 text-secondary text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Actividad</span>
+<span class="bg-surface-variant text-on-surface-variant text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Rehabilitación</span>
+</div>
+</div>
+</div>
+<!-- Diagnosis Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-sm hover:border-primary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start">
+<span class="font-clinical-code text-clinical-code text-primary bg-primary/5 px-2 py-1 rounded">NANDA 00092</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward_ios</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Intolerancia a la actividad</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Energía insuficiente, fisiológica o psicológica, para completar las actividades diarias.</p>
+<div class="mt-md pt-md border-t border-outline-variant/30 flex gap-xs flex-wrap">
+<span class="bg-secondary-container/20 text-secondary text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Metabólico</span>
+</div>
+</div>
+<!-- Diagnosis Card 5 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col gap-sm hover:border-primary transition-colors cursor-pointer group">
+<div class="flex justify-between items-start">
+<span class="font-clinical-code text-clinical-code text-primary bg-primary/5 px-2 py-1 rounded">NANDA 00146</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">arrow_forward_ios</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Ansiedad relacionada con el estado de salud</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Vaga sensación de malestar o amenaza acompañada de una respuesta autonómica.</p>
+<div class="mt-md pt-md border-t border-outline-variant/30 flex gap-xs flex-wrap">
+<span class="bg-secondary-container/20 text-secondary text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Psicosocial</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface border-t border-outline-variant h-[64px] px-xs pb-safe">
+<!-- Active Item: Buscar -->
+<a class="flex flex-col items-center justify-center text-primary bg-primary-container/10 rounded-xl px-3 py-1 scale-95 transition-transform duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="search" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-label-md text-label-md">Buscar</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-md text-label-md">Pacientes</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="font-label-md text-label-md">Admin</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="font-label-md text-label-md">Favoritos</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Perfil</span>
+</a>
+</nav>
+</body></html>

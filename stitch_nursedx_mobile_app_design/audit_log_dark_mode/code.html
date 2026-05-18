@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "secondary-fixed-dim": "#a2c9ff",
+                "secondary-container": "#0274cb",
+                "inverse-surface": "#e5e2e1",
+                "on-error": "#690005",
+                "surface-container": "#201f1f",
+                "outline": "#86948b",
+                "on-secondary-container": "#f7f8ff",
+                "error-container": "#93000a",
+                "primary-container": "#23c18f",
+                "tertiary-container": "#ff8978",
+                "on-primary-fixed-variant": "#005139",
+                "on-tertiary-fixed-variant": "#80291f",
+                "on-tertiary": "#61120b",
+                "secondary-fixed": "#d3e4ff",
+                "tertiary-fixed": "#ffdad5",
+                "surface-container-highest": "#353534",
+                "surface-container-lowest": "#0e0e0e",
+                "on-tertiary-fixed": "#410000",
+                "tertiary-fixed-dim": "#ffb4a8",
+                "on-primary": "#003827",
+                "surface-dim": "#131313",
+                "on-secondary-fixed-variant": "#004881",
+                "surface": "#131313",
+                "error": "#ffb4ab",
+                "primary": "#4edeaa",
+                "surface-tint": "#4edeaa",
+                "on-primary-fixed": "#002115",
+                "primary-fixed-dim": "#4edeaa",
+                "inverse-on-surface": "#313030",
+                "inverse-primary": "#006c4d",
+                "on-primary-container": "#004933",
+                "surface-container-high": "#2a2a2a",
+                "on-surface-variant": "#bbcac1",
+                "surface-container-low": "#1c1b1b",
+                "on-error-container": "#ffdad6",
+                "secondary": "#a2c9ff",
+                "surface-variant": "#353534",
+                "on-secondary-fixed": "#001c38",
+                "surface-bright": "#393939",
+                "on-secondary": "#00315c",
+                "on-surface": "#e5e2e1",
+                "outline-variant": "#3c4a43",
+                "primary-fixed": "#6efbc4",
+                "on-tertiary-container": "#752118",
+                "on-background": "#e5e2e1",
+                "tertiary": "#ffb4a8",
+                "background": "#131313"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "gutter": "16px",
+                    "margin-mobile": "16px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "xl": "32px",
+                    "touch-target-min": "48px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "clinical-code": ["JetBrains Mono"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm-mobile": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-md-mobile": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "clinical-code": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-[80px]">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-margin-mobile h-[72px] w-full bg-surface-container border-b border-outline-variant sticky top-0 z-40">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold">
+                JD
+            </div>
+<h1 class="font-headline-md-mobile text-headline-md-mobile text-primary">Auditoría</h1>
+</div>
+<div class="flex items-center gap-xs">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-md text-label-md">Enfermero</span>
+</div>
+</header>
+<main class="px-margin-mobile pt-lg">
+<!-- Filter Bar -->
+<section class="bg-surface-container-low p-md rounded-xl border border-outline-variant mb-lg">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-surface-variant px-1">USUARIO</label>
+<div class="relative">
+<select class="w-full h-touch-target-min px-md rounded-lg border border-outline-variant bg-surface text-on-surface text-body-md focus:border-primary focus:ring-1 focus:ring-primary appearance-none">
+<option>Todos los usuarios</option>
+<option>Dr. Arrieta</option>
+<option>Enf. Morales</option>
+<option>Admin TICOS</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-surface-variant px-1">TIPO DE ACCIÓN</label>
+<div class="relative">
+<select class="w-full h-touch-target-min px-md rounded-lg border border-outline-variant bg-surface text-on-surface text-body-md focus:border-primary focus:ring-1 focus:ring-primary appearance-none">
+<option>Todas las acciones</option>
+<option>Crear (Create)</option>
+<option>Leer (Read)</option>
+<option>Exportar (Export)</option>
+<option>Eliminar (Delete)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-outline pointer-events-none">filter_list</span>
+</div>
+</div>
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-surface-variant px-1">RANGO DE FECHAS</label>
+<div class="flex gap-xs">
+<input class="flex-1 h-touch-target-min px-xs rounded-lg border border-outline-variant bg-surface text-on-surface text-body-md focus:border-primary focus:ring-1 focus:ring-primary" type="date"/>
+<input class="flex-1 h-touch-target-min px-xs rounded-lg border border-outline-variant bg-surface text-on-surface text-body-md focus:border-primary focus:ring-1 focus:ring-primary" type="date"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Bento Row -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-md mb-lg">
+<div class="bg-surface-container-high p-md rounded-xl border border-outline-variant flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-[32px] mb-base">add_circle</span>
+<span class="font-headline-sm text-headline-sm">124</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Creados</span>
+</div>
+<div class="bg-surface-container-high p-md rounded-xl border border-outline-variant flex flex-col items-center">
+<span class="material-symbols-outlined text-secondary text-[32px] mb-base">visibility</span>
+<span class="font-headline-sm text-headline-sm">2.1k</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Vistos</span>
+</div>
+<div class="bg-surface-container-high p-md rounded-xl border border-outline-variant flex flex-col items-center">
+<span class="material-symbols-outlined text-tertiary-container text-[32px] mb-base">ios_share</span>
+<span class="font-headline-sm text-headline-sm">45</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Exportados</span>
+</div>
+<div class="bg-surface-container-high p-md rounded-xl border border-outline-variant flex flex-col items-center">
+<span class="material-symbols-outlined text-error text-[32px] mb-base">delete_forever</span>
+<span class="font-headline-sm text-headline-sm">12</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Borrados</span>
+</div>
+</section>
+<!-- Audit Log List -->
+<section class="flex flex-col gap-sm">
+<h2 class="font-label-md text-label-md text-on-surface-variant mb-base px-1">REGISTROS RECIENTES</h2>
+<!-- Entry 1: Create (Teal/Primary) -->
+<div class="bg-surface-container-low p-md rounded-xl border border-outline-variant flex items-center gap-md hover:bg-surface-container-high transition-colors duration-150">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add_box</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<span class="font-headline-sm text-headline-sm truncate">Nueva Ficha Clínica</span>
+<span class="font-clinical-code text-clinical-code text-primary shrink-0 ml-xs">NANDA-0012</span>
+</div>
+<div class="flex flex-wrap gap-xs mt-1">
+<span class="text-body-md text-on-surface-variant">Usuario: <span class="font-medium text-on-surface">Enf. Morales</span></span>
+<span class="text-body-md text-on-surface-variant">•</span>
+<span class="text-body-md text-on-surface-variant">Recurso: <span class="font-medium text-on-surface">Paciente 452-B</span></span>
+</div>
+</div>
+<div class="text-right shrink-0">
+<p class="text-body-md font-medium text-on-surface">14:20</p>
+<p class="text-label-md text-outline">Hoy</p>
+</div>
+</div>
+<!-- Entry 2: Read (Blue/Secondary) -->
+<div class="bg-surface-container-low p-md rounded-xl border border-outline-variant flex items-center gap-md hover:bg-surface-container-high transition-colors duration-150">
+<div class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary">visibility</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<span class="font-headline-sm text-headline-sm truncate">Consulta de Antecedentes</span>
+<span class="material-symbols-outlined text-outline text-sm">more_vert</span>
+</div>
+<div class="flex flex-wrap gap-xs mt-1">
+<span class="text-body-md text-on-surface-variant">Usuario: <span class="font-medium text-on-surface">Dr. Arrieta</span></span>
+<span class="text-body-md text-on-surface-variant">•</span>
+<span class="text-body-md text-on-surface-variant">Recurso: <span class="font-medium text-on-surface">Historial Oncológico</span></span>
+</div>
+</div>
+<div class="text-right shrink-0">
+<p class="text-body-md font-medium text-on-surface">13:45</p>
+<p class="text-label-md text-outline">Hoy</p>
+</div>
+</div>
+<!-- Entry 3: Export (Amber/Tertiary-fixed-dim) -->
+<div class="bg-surface-container-low p-md rounded-xl border border-outline-variant flex items-center gap-md hover:bg-surface-container-high transition-colors duration-150">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed-dim/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary-fixed-dim">ios_share</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<span class="font-headline-sm text-headline-sm truncate">Exportación de Reporte PDF</span>
+<span class="font-clinical-code text-clinical-code text-tertiary-fixed-dim shrink-0 ml-xs">ADM-77</span>
+</div>
+<div class="flex flex-wrap gap-xs mt-1">
+<span class="text-body-md text-on-surface-variant">Usuario: <span class="font-medium text-on-surface">Admin TICOS</span></span>
+<span class="text-body-md text-on-surface-variant">•</span>
+<span class="text-body-md text-on-surface-variant">Recurso: <span class="font-medium text-on-surface">Estadísticas Mensuales</span></span>
+</div>
+</div>
+<div class="text-right shrink-0">
+<p class="text-body-md font-medium text-on-surface">11:05</p>
+<p class="text-label-md text-outline">Hoy</p>
+</div>
+</div>
+<!-- Entry 4: Delete (Red/Error) -->
+<div class="bg-surface-container-low p-md rounded-xl border border-outline-variant flex items-center gap-md hover:bg-surface-container-high transition-colors duration-150">
+<div class="w-12 h-12 rounded-full bg-error/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-error">delete_forever</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<span class="font-headline-sm text-headline-sm truncate">Eliminación de Registro</span>
+<span class="material-symbols-outlined text-error text-sm">warning</span>
+</div>
+<div class="flex flex-wrap gap-xs mt-1">
+<span class="text-body-md text-on-surface-variant">Usuario: <span class="font-medium text-on-surface">Admin TICOS</span></span>
+<span class="text-body-md text-on-surface-variant">•</span>
+<span class="text-body-md text-on-surface-variant">Recurso: <span class="font-medium text-on-surface">Documento Duplicado #90</span></span>
+</div>
+</div>
+<div class="text-right shrink-0">
+<p class="text-body-md font-medium text-on-surface">09:12</p>
+<p class="text-label-md text-outline">Hoy</p>
+</div>
+</div>
+<!-- Entry 5: Create (Teal/Primary) -->
+<div class="bg-surface-container-low p-md rounded-xl border border-outline-variant flex items-center gap-md hover:bg-surface-container-high transition-colors duration-150">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">person_add</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<span class="font-headline-sm text-headline-sm truncate">Alta de Nuevo Paciente</span>
+<span class="font-clinical-code text-clinical-code text-primary shrink-0 ml-xs">ID-NEW</span>
+</div>
+<div class="flex flex-wrap gap-xs mt-1">
+<span class="text-body-md text-on-surface-variant">Usuario: <span class="font-medium text-on-surface">Enf. Morales</span></span>
+<span class="text-body-md text-on-surface-variant">•</span>
+<span class="text-body-md text-on-surface-variant">Recurso: <span class="font-medium text-on-surface">Módulo de Admisión</span></span>
+</div>
+</div>
+<div class="text-right shrink-0">
+<p class="text-body-md font-medium text-on-surface">18:30</p>
+<p class="text-label-md text-outline">Ayer</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container px-xs pb-safe h-[64px] border-t border-outline-variant">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-all">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-md text-label-md">Buscar</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-all">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md text-label-md">Pacientes</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary bg-primary-container/10 rounded-xl px-3 py-1 scale-95 transition-transform duration-100">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
+<span class="font-label-md text-label-md">Admin</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-all">
+<span class="material-symbols-outlined">star</span>
+<span class="font-label-md text-label-md">Favoritos</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-all">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Perfil</span>
+</button>
+</nav>
+</body></html>

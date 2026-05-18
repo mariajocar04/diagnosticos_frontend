@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#a2c9ff",
+                        "secondary-container": "#0274cb",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error": "#690005",
+                        "surface-container": "#201f1f",
+                        "outline": "#86948b",
+                        "on-secondary-container": "#f7f8ff",
+                        "error-container": "#93000a",
+                        "primary-container": "#23c18f",
+                        "tertiary-container": "#ff8978",
+                        "on-primary-fixed-variant": "#005139",
+                        "on-tertiary-fixed-variant": "#80291f",
+                        "on-tertiary": "#61120b",
+                        "secondary-fixed": "#d3e4ff",
+                        "tertiary-fixed": "#ffdad5",
+                        "surface-container-highest": "#353534",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed": "#410000",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "on-primary": "#003827",
+                        "surface-dim": "#131313",
+                        "on-secondary-fixed-variant": "#004881",
+                        "surface": "#131313",
+                        "error": "#ffb4ab",
+                        "primary": "#4edeaa",
+                        "surface-tint": "#4edeaa",
+                        "on-primary-fixed": "#002115",
+                        "primary-fixed-dim": "#4edeaa",
+                        "inverse-on-surface": "#313030",
+                        "inverse-primary": "#006c4d",
+                        "on-primary-container": "#004933",
+                        "surface-container-high": "#2a2a2a",
+                        "on-surface-variant": "#bbcac1",
+                        "surface-container-low": "#1c1b1b",
+                        "on-error-container": "#ffdad6",
+                        "secondary": "#a2c9ff",
+                        "surface-variant": "#353534",
+                        "on-secondary-fixed": "#001c38",
+                        "surface-bright": "#393939",
+                        "on-secondary": "#00315c",
+                        "on-surface": "#e5e2e1",
+                        "outline-variant": "#3c4a43",
+                        "primary-fixed": "#6efbc4",
+                        "on-tertiary-container": "#752118",
+                        "on-background": "#e5e2e1",
+                        "tertiary": "#ffb4a8",
+                        "background": "#131313"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xs": "4px",
+                        "margin-desktop": "32px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xl": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "code-md": ["JetBrains Mono"],
+                        "code-sm": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "label-caps": ["Inter"],
+                        "headline-lg": ["Manrope"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "code-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "code-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            min-height: max(884px, 100dvh);
+        }
+        .font-headline-md, .font-headline-lg, .font-display-lg {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-[64px]">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-margin-mobile h-[72px] w-full bg-surface-container border-b border-outline-variant sticky top-0 z-40">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-secondary text-on-secondary flex items-center justify-center font-bold text-headline-md">
+                JD
+            </div>
+<h1 class="font-headline-md text-[18px] text-primary">Hola, Juan</h1>
+</div>
+<div class="px-3 py-1 rounded-full bg-primary-container/20 text-primary font-label-caps text-[12px]">
+            ENFERMERO
+        </div>
+</header>
+<main class="px-margin-mobile py-lg space-y-lg">
+<!-- Profile Hero Section -->
+<section class="flex flex-col items-center text-center space-y-md py-xl bg-surface-container-low rounded-lg border border-outline-variant/30 shadow-sm">
+<div class="w-24 h-24 rounded-full bg-primary text-on-primary flex items-center justify-center text-[36px] font-bold ring-4 ring-primary-container/20">
+                JD
+            </div>
+<div class="space-y-1">
+<h2 class="font-headline-lg text-[22px] text-on-surface">Juan Delgado Martínez</h2>
+<p class="font-body-md text-on-surface-variant">juan.delgado@ticossystem.com</p>
+</div>
+</section>
+<!-- Mi Cuenta Section -->
+<section class="space-y-sm">
+<h3 class="font-label-caps text-primary px-xs">MI CUENTA</h3>
+<div class="bg-surface-container-low rounded-lg border border-outline-variant overflow-hidden">
+<!-- Item: Cambiar contraseña -->
+<button class="w-full flex items-center justify-between px-md py-md hover:bg-surface-container-highest transition-colors duration-150 border-b border-outline-variant/50 group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">lock</span>
+<span class="font-body-lg text-on-surface">Cambiar contraseña</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<!-- Item: Modo Oscuro (Toggle) -->
+<div class="w-full flex items-center justify-between px-md py-md border-b border-outline-variant/50">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">dark_mode</span>
+<span class="font-body-lg text-on-surface">Modo Oscuro</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</div>
+<!-- Item: Notificaciones -->
+<button class="w-full flex items-center justify-between px-md py-md hover:bg-surface-container-highest transition-colors duration-150 group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">notifications</span>
+<span class="font-body-lg text-on-surface">Notificaciones</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Sesión Section -->
+<section class="space-y-sm">
+<h3 class="font-label-caps text-primary px-xs">SESIÓN</h3>
+<div class="bg-surface-container-low rounded-lg border border-outline-variant overflow-hidden">
+<button class="w-full flex items-center justify-between px-md py-md hover:bg-error-container/20 transition-colors duration-150 group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-error">logout</span>
+<span class="font-body-lg text-error font-semibold">Cerrar sesión</span>
+</div>
+<span class="material-symbols-outlined text-error/50">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Logo & Version Footer -->
+<footer class="flex flex-col items-center py-xl space-y-base">
+<div class="font-headline-lg text-primary/40 tracking-tighter opacity-50">
+                TICOS
+            </div>
+<p class="font-label-caps text-[12px] text-outline">VERSIÓN 2.4.0-CLINICAL</p>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container px-xs pb-safe h-[64px] border-t border-outline-variant">
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest cursor-pointer transition-colors px-3 py-1 rounded-lg">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-caps text-[10px]">BUSCAR</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest cursor-pointer transition-colors px-3 py-1 rounded-lg">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-caps text-[10px]">PACIENTES</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest cursor-pointer transition-colors px-3 py-1 rounded-lg">
+<span class="material-symbols-outlined">admin_panel_settings</span>
+<span class="font-label-caps text-[10px]">ADMIN</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-highest cursor-pointer transition-colors px-3 py-1 rounded-lg">
+<span class="material-symbols-outlined">star</span>
+<span class="font-label-caps text-[10px]">FAVORITOS</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary bg-primary-container/10 rounded-lg px-3 py-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-[10px]">PERFIL</span>
+</div>
+</nav>
+<!-- Modal Overlay (Logout Confirmation) - Hidden by default in real flow, kept for reference -->
+<!-- (Normally this would be hidden with 'hidden' class) -->
+<div class="fixed inset-0 z-[100] flex items-end justify-center sm:items-center bg-black/70 backdrop-blur-sm p-margin-mobile hidden">
+<div class="w-full max-w-sm bg-surface-container rounded-lg p-lg shadow-2xl space-y-lg border border-outline-variant">
+<div class="space-y-sm">
+<div class="w-12 h-12 rounded-full bg-error-container/20 flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'opsz' 32;">logout</span>
+</div>
+<h4 class="font-headline-md text-on-surface">¿Cerrar sesión?</h4>
+<p class="font-body-md text-on-surface-variant">Estás a punto de salir del sistema clínico. Asegúrate de haber guardado todos los cambios en las fichas de pacientes.</p>
+</div>
+<div class="flex flex-col gap-sm">
+<button class="h-[48px] w-full bg-tertiary-container text-on-tertiary-container font-headline-md text-[16px] rounded-lg flex items-center justify-center shadow-md active:scale-[0.98] transition-transform">
+                    Sí, cerrar sesión
+                </button>
+<button class="h-[48px] w-full bg-surface border border-outline text-on-surface font-headline-md text-[16px] rounded-lg flex items-center justify-center active:bg-surface-container-highest transition-colors">
+                    Cancelar
+                </button>
+</div>
+</div>
+</div>
+</body></html>

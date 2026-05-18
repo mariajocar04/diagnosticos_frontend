@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-fixed-dim": "#a2c9ff",
+                "secondary-container": "#0274cb",
+                "inverse-surface": "#e5e2e1",
+                "on-error": "#690005",
+                "surface-container": "#201f1f",
+                "outline": "#86948b",
+                "on-secondary-container": "#f7f8ff",
+                "error-container": "#93000a",
+                "primary-container": "#23c18f",
+                "tertiary-container": "#ff8978",
+                "on-primary-fixed-variant": "#005139",
+                "on-tertiary-fixed-variant": "#80291f",
+                "on-tertiary": "#61120b",
+                "secondary-fixed": "#d3e4ff",
+                "tertiary-fixed": "#ffdad5",
+                "surface-container-highest": "#353534",
+                "surface-container-lowest": "#0e0e0e",
+                "on-tertiary-fixed": "#410000",
+                "tertiary-fixed-dim": "#ffb4a8",
+                "on-primary": "#003827",
+                "surface-dim": "#131313",
+                "on-secondary-fixed-variant": "#004881",
+                "surface": "#131313",
+                "error": "#ffb4ab",
+                "primary": "#4edeaa",
+                "surface-tint": "#4edeaa",
+                "on-primary-fixed": "#002115",
+                "primary-fixed-dim": "#4edeaa",
+                "inverse-on-surface": "#313030",
+                "inverse-primary": "#006c4d",
+                "on-primary-container": "#004933",
+                "surface-container-high": "#2a2a2a",
+                "on-surface-variant": "#bbcac1",
+                "surface-container-low": "#1c1b1b",
+                "on-error-container": "#ffdad6",
+                "secondary": "#a2c9ff",
+                "surface-variant": "#353534",
+                "on-secondary-fixed": "#001c38",
+                "surface-bright": "#393939",
+                "on-secondary": "#00315c",
+                "on-surface": "#e5e2e1",
+                "outline-variant": "#3c4a43",
+                "primary-fixed": "#6efbc4",
+                "on-tertiary-container": "#752118",
+                "on-background": "#e5e2e1",
+                "tertiary": "#ffb4a8",
+                "background": "#131313"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "md": "16px",
+                "xs": "4px",
+                "margin-desktop": "32px",
+                "base": "4px",
+                "margin-mobile": "16px",
+                "lg": "24px",
+                "sm": "8px",
+                "xl": "32px",
+                "gutter": "16px"
+        },
+        "fontFamily": {
+                "code-md": ["JetBrains Mono"],
+                "code-sm": ["JetBrains Mono"],
+                "body-lg": ["Inter"],
+                "display-lg": ["Manrope"],
+                "headline-md": ["Manrope"],
+                "label-caps": ["Inter"],
+                "headline-lg": ["Manrope"],
+                "body-sm": ["Inter"],
+                "body-md": ["Inter"]
+        },
+        "fontSize": {
+                "code-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                "code-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+        }
+      },
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        main {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col transition-colors duration-300">
+<!-- Top App Bar -->
+<header class="bg-surface-container border-b border-outline-variant sticky top-0 z-40 w-full">
+<div class="flex items-center justify-between px-margin-mobile h-[72px] w-full">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-on-secondary font-bold text-[14px]">
+                    JD
+                </div>
+<h1 class="font-headline-md text-headline-md text-primary">Mis favoritos</h1>
+</div>
+<div class="flex items-center gap-xs">
+<span class="bg-primary-container/20 text-primary px-3 py-1 rounded-full font-label-caps text-label-caps uppercase">Enfermero</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow px-margin-mobile py-lg">
+<!-- Section Header -->
+<div class="mb-lg">
+<p class="font-body-md text-body-md text-on-surface-variant">Accede rápidamente a tus diagnósticos clínicos guardados de la taxonomía NANDA.</p>
+</div>
+<!-- Favorites Grid -->
+<div class="grid grid-cols-1 gap-md">
+<!-- Diagnosis Card 1 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-md flex flex-col gap-sm relative hover:bg-surface-container-high transition-colors">
+<div class="flex justify-between items-start">
+<span class="font-code-md text-code-md text-primary uppercase tracking-wider bg-primary-container/10 px-2 py-1 rounded">00132</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-[20px]">Dolor agudo</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Experiencia sensorial y emocional desagradable asociada a daño tisular real o potencial.</p>
+<div class="flex items-center gap-xs mt-xs">
+<span class="material-symbols-outlined text-outline text-[18px]">clinical_notes</span>
+<span class="font-label-caps text-label-caps text-outline uppercase">Dominio 12: Confort</span>
+</div>
+</div>
+<!-- Diagnosis Card 2 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-md flex flex-col gap-sm relative hover:bg-surface-container-high transition-colors">
+<div class="flex justify-between items-start">
+<span class="font-code-md text-code-md text-primary uppercase tracking-wider bg-primary-container/10 px-2 py-1 rounded">00146</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-[20px]">Ansiedad</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Vaga sensación de malestar o amenaza acompañada de una respuesta autónoma.</p>
+<div class="flex items-center gap-xs mt-xs">
+<span class="material-symbols-outlined text-outline text-[18px]">clinical_notes</span>
+<span class="font-label-caps text-label-caps text-outline uppercase">Dominio 9: Afrontamiento</span>
+</div>
+</div>
+<!-- Diagnosis Card 3 -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-md flex flex-col gap-sm relative hover:bg-surface-container-high transition-colors">
+<div class="flex justify-between items-start">
+<span class="font-code-md text-code-md text-primary uppercase tracking-wider bg-primary-container/10 px-2 py-1 rounded">00004</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-[20px]">Riesgo de infección</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Vulnerable a una invasión y multiplicación de organismos patógenos que pueden comprometer la salud.</p>
+<div class="flex items-center gap-xs mt-xs">
+<span class="material-symbols-outlined text-outline text-[18px]">clinical_notes</span>
+<span class="font-label-caps text-label-caps text-outline uppercase">Dominio 11: Seguridad</span>
+</div>
+</div>
+<!-- Empty State Helper -->
+<div class="mt-lg p-lg border-2 border-dashed border-outline-variant rounded-xl flex flex-col items-center text-center bg-surface-container-low">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center mb-sm shadow-sm">
+<span class="material-symbols-outlined text-outline text-[32px]">favorite_border</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[240px]">
+                    Guarda los diagnósticos que más usas tocando <span class="material-symbols-outlined text-error text-[16px] align-middle">favorite_border</span> en el detalle.
+                </p>
+</div>
+</div>
+<!-- Featured Visualization Card -->
+<section class="mt-xl">
+<div class="relative overflow-hidden rounded-xl h-48 flex items-end p-md group">
+<img alt="Clinical Research" class="absolute inset-0 w-full h-full object-cover grayscale opacity-30 group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdGSf4c2CfRjY32BdB5itPrsZS0g0rHMkthOMfdXAjpRWlwpSdB955DTpKBBH8NRQ9PqlER6x-1E5lkrBtZtT1aYX5c6AeP38KcmhPdztpj9QFdqdKRdz7i0vqKq6Zi72oy2szx3OuRAszvLA7cwGuAZ3GurlKwU_nesXLeRuQ64VBZWWrj1ycHDD3CZcxJOqEPFbHOsp5Oy721Eq3EJ4nMZlJ4KV75_3PlVYbbxSnl0StAdPhvSuE6gETv0kGYOBNUj-m1VFPVpDk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+<div class="relative z-10">
+<h4 class="text-primary font-headline-md text-headline-md text-[18px]">Actualización NANDA-I</h4>
+<p class="text-on-surface/90 font-label-caps text-label-caps">NUEVOS DIAGNÓSTICOS 2024-2026 DISPONIBLES.</p>
+</div>
+</div>
+</section>
+<!-- Padding for navigation bar -->
+<div class="h-[80px]"></div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-container px-xs pb-safe border-t border-outline-variant h-[64px]">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1 transition-colors">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-caps text-label-caps uppercase scale-90">Buscar</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1 transition-colors">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-caps text-label-caps uppercase scale-90">Pacientes</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1 transition-colors">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="font-label-caps text-label-caps uppercase scale-90">Admin</span>
+</button>
+<!-- Active Navigation Item: Favoritos -->
+<button class="flex flex-col items-center justify-center text-primary bg-primary-container/10 rounded-xl px-4 py-1">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-caps text-label-caps uppercase scale-90">Favoritos</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-3 py-1 transition-colors">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps uppercase scale-90">Perfil</span>
+</button>
+</nav>
+</body></html>
