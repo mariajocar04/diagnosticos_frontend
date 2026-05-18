@@ -13,13 +13,12 @@ export interface UserProfile {
 }
 
 export interface NandaCatalog {
-  codigo_nanda: string;
+  id: number;
+  codigo: string;
   nombre: string;
-  definicion: string;
-  caracteristicas_definitorias?: string;
-  factores_relacionados?: string;
-  nic_sugeridos?: string;
-  noc_sugeridos?: string;
+  sintomas?: string;
+  intervenciones_nic?: string;
+  resultados_noc?: string;
 }
 
 export interface Patient {
