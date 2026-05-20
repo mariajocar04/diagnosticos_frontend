@@ -29,3 +29,38 @@ export interface Patient {
   numero_documento: string;
   creado_en: string;
 }
+
+export interface PatientCreate {
+  nombre_completo: string;
+  numero_historia: string;
+  tipo_documento: string;
+  numero_documento: string;
+}
+
+export interface PatientUpdate {
+  nombre_completo?: string;
+  numero_historia?: string;
+  tipo_documento?: string;
+  numero_documento?: string;
+}
+
+export interface UsuarioMini {
+  id: number;
+  usuario: string;
+  nombre_completo: string;
+}
+
+export interface NotaEnfermeria {
+  id: number;
+  paciente_id: number;
+  usuario_id: number;
+  contenido: string;
+  creado_en: string;
+  usuario?: UsuarioMini;
+}
+
+export interface NotaEnfermeriaCreate {
+  contenido: string;
+}
+
+

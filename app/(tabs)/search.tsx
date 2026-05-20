@@ -1,6 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { useAuthStore } from '../../src/store/authStore';
+import { useSearchStore } from '../../src/store/searchStore';
+
+const COMMON_SYMPTOMS = [
+  'Fatiga',
+  'Dificultad para respirar',
+  'Cianosis',
+  'Dolor abdominal',
+  'Dolor de cabeza',
+  'Aumento de peso',
+  'Pérdida de peso',
+  'Defecación infrecuente',
+  'Estrés o ansiedad',
+  'Falta de energía',
+  'Obesidad',
+  'Desnutrición',
+  'Mareos',
+  'Interés en aprender',
+  'Tos persistente'
+];
 import { useAppTheme } from '../../src/styles/theme';
 import { Input } from '../../src/components/ui/Input';
 import { InfoCard } from '../../src/components/ui/InfoCard';
@@ -17,21 +36,74 @@ export default function SearchTab() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<NandaCatalog[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
+
+  const recentSearches = useSearchStore(state => state.recentSearches);
+  const setRecentSearches = useSearchStore(state => state.setRecentSearches);
+  const clearRecentSearches = useSearchStore(state => state.clearRecentSearches);
 
   useEffect(() => {
     fetchDiagnoses();
-  }, []);
+    if (!isGuest) {
+      fetchSearchHistory();
+    }
+  }, [isGuest]);
 
   const fetchDiagnoses = async (searchQuery: string = '') => {
     setIsLoading(true);
     try {
       const res = await api.get(`/diagnosticos?q=${searchQuery}`);
       setResults(res.data.datos || []);
+      
+      // Refresh history from backend if a query was made by professional user
+      if (searchQuery.trim() && !isGuest) {
+        fetchSearchHistory();
+      }
     } catch (e) {
       console.warn("Fallo al obtener NANDA", e);
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const fetchSearchHistory = async () => {
+    try {
+      const res = await api.get('/diagnosticos/historial');
+      const terms = res.data.datos.map((d: any) => d.termino);
+      setRecentSearches(terms);
+    } catch (e) {
+      console.warn("Error al cargar historial", e);
+    }
+  };
+
+  const handleClearHistory = async () => {
+    try {
+      await api.delete('/diagnosticos/historial');
+      clearRecentSearches();
+    } catch (e) {
+      console.warn("Error al limpiar historial", e);
+      Alert.alert('Error', 'No se pudo limpiar el historial');
+    }
+  };
+
+  const handleQueryChange = (text: string) => {
+    setQuery(text);
+    if (text === '') {
+      setSelectedSymptoms([]);
+    }
+  };
+
+  const handleSymptomPress = (symptom: string) => {
+    const isSelected = selectedSymptoms.includes(symptom);
+    const updated = isSelected
+      ? selectedSymptoms.filter(s => s !== symptom)
+      : [...selectedSymptoms, symptom];
+    
+    setSelectedSymptoms(updated);
+    
+    const newQuery = updated.join(', ');
+    setQuery(newQuery);
+    fetchDiagnoses(newQuery);
   };
 
   const handleSearch = () => {
@@ -149,16 +221,102 @@ export default function SearchTab() {
           label="" 
           placeholder="Buscar diagnóstico o síntoma..." 
           value={query}
-          onChangeText={setQuery}
+          onChangeText={handleQueryChange}
           onSubmitEditing={handleSearch}
           returnKeyType="search"
-          style={{ marginBottom: 0 }}
+          style={{ marginBottom: layout.spacing.sm }}
         />
+
+        <View style={{ marginTop: layout.spacing.xs }}>
+          <Text style={{ fontFamily: typography.fonts.bold, fontSize: 11, color: colors.onSurfaceVariant, marginBottom: 6 }}>
+            Filtrar por síntomas clínicos:
+          </Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingVertical: 2 }}>
+            {COMMON_SYMPTOMS.map((symptom) => {
+              const isSelected = selectedSymptoms.includes(symptom);
+              return (
+                <TouchableOpacity
+                  key={symptom}
+                  activeOpacity={0.7}
+                  onPress={() => handleSymptomPress(symptom)}
+                  style={{
+                    backgroundColor: isSelected ? colors.primary : colors.surfaceContainer,
+                    paddingHorizontal: 12,
+                    paddingVertical: 6,
+                    borderRadius: layout.radius.pill,
+                    borderWidth: 1,
+                    borderColor: isSelected ? colors.primary : colors.outlineVariant,
+                    marginRight: 8,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    height: 32,
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Text style={{ 
+                    fontFamily: typography.fonts.medium, 
+                    fontSize: 12, 
+                    color: isSelected ? '#ffffff' : colors.onSurface 
+                  }}>
+                    {isSelected ? '✓ ' : ''}{symptom}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
+          {isGuest && selectedSymptoms.length < 2 && (
+            <Text style={{ fontFamily: typography.fonts.regular, fontSize: 11, color: colors.primary, marginTop: 6 }}>
+              💡 Selecciona al menos 2 síntomas para buscar en modo invitado.
+            </Text>
+          )}
+        </View>
       </View>
 
       {isLoading ? (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator size="large" color={colors.primary} />
+        </View>
+      ) : query.trim() === '' && !isGuest && recentSearches.length > 0 ? (
+        <View style={{ flex: 1, padding: layout.spacing.md }}>
+          <Text style={{ fontFamily: typography.fonts.bold, color: colors.onSurfaceVariant, marginBottom: layout.spacing.sm, fontSize: 14 }}>
+            Búsquedas recientes
+          </Text>
+          <FlatList
+            data={recentSearches}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => (
+              <TouchableOpacity 
+                activeOpacity={0.7}
+                style={{ 
+                  flexDirection: 'row', 
+                  alignItems: 'center', 
+                  paddingVertical: layout.spacing.sm, 
+                  borderBottomWidth: 1, 
+                  borderBottomColor: colors.outlineVariant 
+                }}
+                onPress={() => {
+                  setQuery(item);
+                  fetchDiagnoses(item);
+                }}
+              >
+                <Text style={{ fontSize: 16, marginRight: layout.spacing.sm, color: colors.onSurfaceVariant }}>🕒</Text>
+                <Text style={{ fontFamily: typography.fonts.regular, fontSize: 15, color: colors.onSurface, flex: 1 }}>
+                  {item}
+                </Text>
+              </TouchableOpacity>
+            )}
+            ListFooterComponent={
+              <TouchableOpacity 
+                activeOpacity={0.7}
+                style={{ marginTop: layout.spacing.md, alignSelf: 'flex-start' }}
+                onPress={handleClearHistory}
+              >
+                <Text style={{ fontFamily: typography.fonts.bold, color: colors.error, fontSize: 14 }}>
+                  Borrar historial 🗑️
+                </Text>
+              </TouchableOpacity>
+            }
+          />
         </View>
       ) : (
         <FlatList
@@ -168,7 +326,7 @@ export default function SearchTab() {
           contentContainerStyle={{ padding: layout.spacing.md }}
           ListEmptyComponent={
             <Text style={{ textAlign: 'center', color: colors.onSurfaceVariant, marginTop: layout.spacing.xl, fontFamily: typography.fonts.regular }}>
-              No se encontraron diagnósticos.
+              {query.trim() === '' ? 'Ingresa un término para comenzar a buscar.' : 'No se encontraron diagnósticos.'}
             </Text>
           }
         />
