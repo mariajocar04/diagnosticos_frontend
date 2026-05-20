@@ -54,7 +54,7 @@ export const Input: React.FC<InputProps> = ({ label, error, style, onFocus, onBl
           fontFamily: typography.fonts.regular,
           fontSize: 12,
           color: colors.error,
-          marginTop: layout.spacing.base,
+          marginTop: layout.spacing.xs / 2,
         }}>
           {error}
         </Text>

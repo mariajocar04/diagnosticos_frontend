@@ -67,7 +67,7 @@ export default function PatientsTab() {
             text: 'Iniciar sesión', 
             onPress: () => {
               useAuthStore.getState().setGuestMode(false);
-              router.replace('/(auth)/login');
+              router.replace('/');
             } 
           }
         ]

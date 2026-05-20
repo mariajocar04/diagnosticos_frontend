@@ -50,7 +50,7 @@ export const useSearchStore = create<SearchState>((set) => ({
   cacheDiagnoses: (diagnoses) => set((state) => {
     const newCache = { ...state.diagnosesCache };
     diagnoses.forEach(diag => {
-      newCache[diag.codigo_nanda] = diag;
+      newCache[diag.codigo] = diag;
     });
     return { diagnosesCache: newCache };
   })

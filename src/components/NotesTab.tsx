@@ -11,9 +11,10 @@ import { FileText, Plus, Trash2, ShieldAlert } from 'lucide-react-native';
 
 interface NotesTabProps {
   patientId: number;
+  focusKey?: number;
 }
 
-export default function NotesTab({ patientId }: NotesTabProps) {
+export default function NotesTab({ patientId, focusKey }: NotesTabProps) {
   const { colors, typography, layout } = useAppTheme();
   const { user, isGuest } = useAuthStore();
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function NotesTab({ patientId }: NotesTabProps) {
 
   useEffect(() => {
     fetchNotes();
-  }, [patientId]);
+  }, [patientId, focusKey]);
 
   const fetchNotes = async () => {
     setIsLoading(true);

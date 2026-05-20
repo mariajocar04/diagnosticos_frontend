@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, ActivityIndicator, Alert } from 'react-native';
+import { View, Text, ScrollView, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { api } from '../../src/services/api';
 import { NandaCatalog } from '../../src/types/base_type';
@@ -61,7 +61,7 @@ export default function DiagnosisDetailScreen() {
           { text: 'Cancelar', style: 'cancel' },
           { text: 'Ir al Login', onPress: () => {
               useAuthStore.getState().setGuestMode(false);
-              router.replace('/(auth)/login');
+              router.replace('/');
           }}
         ]
       );
@@ -91,7 +91,7 @@ export default function DiagnosisDetailScreen() {
           { text: 'Cancelar', style: 'cancel' },
           { text: 'Ir al Login', onPress: () => {
               useAuthStore.getState().setGuestMode(false);
-              router.replace('/(auth)/login');
+              router.replace('/');
           }}
         ]
       );

@@ -1,5 +1,14 @@
 import { api } from './api';
-import { Patient, PatientCreate, PatientUpdate, NotaEnfermeria, NotaEnfermeriaCreate } from '../types/base_type';
+import { 
+  Patient, 
+  PatientCreate, 
+  PatientUpdate, 
+  NotaEnfermeria, 
+  NotaEnfermeriaCreate,
+  DiagnosticoClinico,
+  DiagnosticoClinicoCreate,
+  EventoHistorial
+} from '../types/base_type';
 
 export const patientService = {
   getPatients: async (search?: string): Promise<Patient[]> => {
@@ -37,5 +46,29 @@ export const patientService = {
     const response = await api.post(`/pacientes/${patientId}/notas`, data);
     return response.data;
   },
+
+  deleteNote: async (noteId: number): Promise<void> => {
+    await api.delete(`/pacientes/notas/${noteId}`);
+  },
+
+  getDiagnostics: async (patientId: number): Promise<DiagnosticoClinico[]> => {
+    const response = await api.get(`/pacientes/${patientId}/diagnosticos`);
+    return response.data || [];
+  },
+
+  assignDiagnosis: async (patientId: number, data: DiagnosticoClinicoCreate): Promise<DiagnosticoClinico> => {
+    const response = await api.post(`/pacientes/${patientId}/diagnosticos`, data);
+    return response.data;
+  },
+
+  deleteDiagnosis: async (assignmentId: number): Promise<void> => {
+    await api.delete(`/pacientes/diagnosticos/${assignmentId}`);
+  },
+
+  getUnifiedTimeline: async (patientId: number): Promise<EventoHistorial[]> => {
+    const response = await api.get(`/pacientes/${patientId}/historial`);
+    return response.data || [];
+  },
 };
+
 

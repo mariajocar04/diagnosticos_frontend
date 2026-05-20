@@ -212,7 +212,7 @@ export default function SearchTab() {
               style={{ height: 36, alignSelf: 'flex-start', paddingHorizontal: layout.spacing.md }}
               onPress={() => {
                 useAuthStore.getState().setGuestMode(false);
-                router.replace('/(auth)/login');
+                router.replace('/');
               }}
             />
           </View>

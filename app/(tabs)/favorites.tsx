@@ -117,7 +117,7 @@ export default function FavoritesTab() {
             style={{ width: '100%' }}
             onPress={() => {
               useAuthStore.getState().setGuestMode(false);
-              router.replace('/(auth)/login');
+              router.replace('/');
             }}
           />
         </View>

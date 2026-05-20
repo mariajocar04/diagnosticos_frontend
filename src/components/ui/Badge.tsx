@@ -35,7 +35,7 @@ export const Badge: React.FC<BadgeProps> = ({ label, variant = 'neutral', style 
     <View style={[{
       backgroundColor: themeStyle.bg,
       paddingHorizontal: layout.spacing.sm,
-      paddingVertical: layout.spacing.base,
+      paddingVertical: layout.spacing.xs / 2,
       borderRadius: layout.radius.pill,
       alignSelf: 'flex-start',
     }, style]}>

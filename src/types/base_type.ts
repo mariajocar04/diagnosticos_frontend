@@ -63,4 +63,34 @@ export interface NotaEnfermeriaCreate {
   contenido: string;
 }
 
+export interface DiagnosticoClinico {
+  id: number;
+  usuario_id: number;
+  paciente_id: number;
+  codigo_nanda: string;
+  resultado?: string;
+  fecha_hora: string;
+  usuario?: UsuarioMini;
+  catalogo?: {
+    codigo: string;
+    nombre: string;
+  };
+}
+
+export interface DiagnosticoClinicoCreate {
+  codigo_nanda: string;
+  resultado?: string;
+}
+
+export interface EventoHistorial {
+  tipo: 'nota' | 'diagnostico';
+  id: number;
+  fecha: string;
+  descripcion: string;
+  detalle: string;
+  usuario?: UsuarioMini;
+  metadata?: Record<string, any>;
+}
+
+
 
