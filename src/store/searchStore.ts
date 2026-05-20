@@ -9,6 +9,7 @@ interface SearchState {
   // Actions
   setFavorites: (favorites: string[]) => void;
   toggleFavoriteLocal: (nandaCode: string) => void;
+  setRecentSearches: (searches: string[]) => void;
   addRecentSearch: (query: string) => void;
   removeRecentSearch: (query: string) => void;
   clearRecentSearches: () => void;
@@ -21,6 +22,8 @@ export const useSearchStore = create<SearchState>((set) => ({
   diagnosesCache: {},
 
   setFavorites: (favorites) => set({ favorites }),
+
+  setRecentSearches: (recentSearches) => set({ recentSearches }),
 
   toggleFavoriteLocal: (nandaCode) => set((state) => {
     const isFavorite = state.favorites.includes(nandaCode);

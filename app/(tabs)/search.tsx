@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert } from 'react-native';
 import { useAuthStore } from '../../src/store/authStore';
+import { useSearchStore } from '../../src/store/searchStore';
 import { useAppTheme } from '../../src/styles/theme';
 import { Input } from '../../src/components/ui/Input';
 import { InfoCard } from '../../src/components/ui/InfoCard';
@@ -18,19 +19,51 @@ export default function SearchTab() {
   const [results, setResults] = useState<NandaCatalog[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const recentSearches = useSearchStore(state => state.recentSearches);
+  const setRecentSearches = useSearchStore(state => state.setRecentSearches);
+  const clearRecentSearches = useSearchStore(state => state.clearRecentSearches);
+
   useEffect(() => {
     fetchDiagnoses();
-  }, []);
+    if (!isGuest) {
+      fetchSearchHistory();
+    }
+  }, [isGuest]);
 
   const fetchDiagnoses = async (searchQuery: string = '') => {
     setIsLoading(true);
     try {
       const res = await api.get(`/diagnosticos?q=${searchQuery}`);
       setResults(res.data.datos || []);
+      
+      // Refresh history from backend if a query was made by professional user
+      if (searchQuery.trim() && !isGuest) {
+        fetchSearchHistory();
+      }
     } catch (e) {
       console.warn("Fallo al obtener NANDA", e);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const fetchSearchHistory = async () => {
+    try {
+      const res = await api.get('/diagnosticos/historial');
+      const terms = res.data.datos.map((d: any) => d.termino);
+      setRecentSearches(terms);
+    } catch (e) {
+      console.warn("Error al cargar historial", e);
+    }
+  };
+
+  const handleClearHistory = async () => {
+    try {
+      await api.delete('/diagnosticos/historial');
+      clearRecentSearches();
+    } catch (e) {
+      console.warn("Error al limpiar historial", e);
+      Alert.alert('Error', 'No se pudo limpiar el historial');
     }
   };
 
@@ -160,6 +193,48 @@ export default function SearchTab() {
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator size="large" color={colors.primary} />
         </View>
+      ) : query.trim() === '' && !isGuest && recentSearches.length > 0 ? (
+        <View style={{ flex: 1, padding: layout.spacing.md }}>
+          <Text style={{ fontFamily: typography.fonts.bold, color: colors.onSurfaceVariant, marginBottom: layout.spacing.sm, fontSize: 14 }}>
+            Búsquedas recientes
+          </Text>
+          <FlatList
+            data={recentSearches}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => (
+              <TouchableOpacity 
+                activeOpacity={0.7}
+                style={{ 
+                  flexDirection: 'row', 
+                  alignItems: 'center', 
+                  paddingVertical: layout.spacing.sm, 
+                  borderBottomWidth: 1, 
+                  borderBottomColor: colors.outlineVariant 
+                }}
+                onPress={() => {
+                  setQuery(item);
+                  fetchDiagnoses(item);
+                }}
+              >
+                <Text style={{ fontSize: 16, marginRight: layout.spacing.sm, color: colors.onSurfaceVariant }}>🕒</Text>
+                <Text style={{ fontFamily: typography.fonts.regular, fontSize: 15, color: colors.onSurface, flex: 1 }}>
+                  {item}
+                </Text>
+              </TouchableOpacity>
+            )}
+            ListFooterComponent={
+              <TouchableOpacity 
+                activeOpacity={0.7}
+                style={{ marginTop: layout.spacing.md, alignSelf: 'flex-start' }}
+                onPress={handleClearHistory}
+              >
+                <Text style={{ fontFamily: typography.fonts.bold, color: colors.error, fontSize: 14 }}>
+                  Borrar historial 🗑️
+                </Text>
+              </TouchableOpacity>
+            }
+          />
+        </View>
       ) : (
         <FlatList
           data={results}
@@ -168,7 +243,7 @@ export default function SearchTab() {
           contentContainerStyle={{ padding: layout.spacing.md }}
           ListEmptyComponent={
             <Text style={{ textAlign: 'center', color: colors.onSurfaceVariant, marginTop: layout.spacing.xl, fontFamily: typography.fonts.regular }}>
-              No se encontraron diagnósticos.
+              {query.trim() === '' ? 'Ingresa un término para comenzar a buscar.' : 'No se encontraron diagnósticos.'}
             </Text>
           }
         />

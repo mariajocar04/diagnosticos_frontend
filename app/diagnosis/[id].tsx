@@ -6,6 +6,7 @@ import { NandaCatalog } from '../../src/types/base_type';
 import { useAppTheme } from '../../src/styles/theme';
 import { Button } from '../../src/components/ui/Button';
 import { useAuthStore } from '../../src/store/authStore';
+import { useSearchStore } from '../../src/store/searchStore';
 
 export default function DiagnosisDetailScreen() {
   const { id } = useLocalSearchParams();
@@ -15,9 +16,17 @@ export default function DiagnosisDetailScreen() {
   
   const [diagnosis, setDiagnosis] = useState<NandaCatalog | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isTogglingFav, setIsTogglingFav] = useState(false);
+
+  const favorites = useSearchStore(state => state.favorites);
+  const toggleFavoriteLocal = useSearchStore(state => state.toggleFavoriteLocal);
+  const setFavorites = useSearchStore(state => state.setFavorites);
 
   useEffect(() => {
     fetchDetail();
+    if (!isGuest) {
+      fetchFavorites();
+    }
   }, [id]);
 
   const fetchDetail = async () => {
@@ -30,6 +39,46 @@ export default function DiagnosisDetailScreen() {
       router.back();
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const fetchFavorites = async () => {
+    try {
+      const res = await api.get('/diagnosticos/favoritos');
+      const favoriteCodes = res.data.datos.map((d: any) => d.codigo);
+      setFavorites(favoriteCodes);
+    } catch (e) {
+      console.warn("Fallo al obtener favoritos de la API", e);
+    }
+  };
+
+  const handleFavoriteToggle = async () => {
+    if (isGuest) {
+      Alert.alert(
+        'Inicia sesión', 
+        'Debes iniciar sesión para poder guardar diagnósticos en tus favoritos.',
+        [
+          { text: 'Cancelar', style: 'cancel' },
+          { text: 'Ir al Login', onPress: () => {
+              useAuthStore.getState().setGuestMode(false);
+              router.replace('/(auth)/login');
+          }}
+        ]
+      );
+      return;
+    }
+
+    if (!diagnosis) return;
+
+    setIsTogglingFav(true);
+    try {
+      await api.post(`/diagnosticos/${diagnosis.codigo}/favorito`);
+      toggleFavoriteLocal(diagnosis.codigo);
+    } catch (e) {
+      console.warn("Fallo al guardar/quitar favorito", e);
+      Alert.alert('Error', 'No se pudo actualizar el favorito.');
+    } finally {
+      setIsTogglingFav(false);
     }
   };
 
@@ -103,9 +152,10 @@ export default function DiagnosisDetailScreen() {
 
       <View style={{ padding: layout.spacing.md, backgroundColor: colors.surface, borderTopWidth: 1, borderTopColor: colors.outlineVariant, flexDirection: 'row', gap: layout.spacing.md }}>
         <Button 
-          title="♡ Guardar" 
-          variant="outlined" 
-          onPress={() => handleAction('guardar en favoritos')} 
+          title={favorites.includes(diagnosis.codigo) ? "♥ Guardado" : "♡ Guardar"} 
+          variant={favorites.includes(diagnosis.codigo) ? "primary" : "outlined"} 
+          onPress={handleFavoriteToggle} 
+          isLoading={isTogglingFav}
           style={{ flex: 1 }} 
         />
         <Button 
