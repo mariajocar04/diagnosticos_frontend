@@ -1,9 +1,11 @@
 import { Tabs } from 'expo-router';
 import { useAppTheme } from '../../src/styles/theme';
+import { useAuthStore } from '../../src/store/authStore';
 import { Search, Heart, Users } from 'lucide-react-native';
 
 export default function TabsLayout() {
   const { colors, typography } = useAppTheme();
+  const { isGuest } = useAuthStore();
 
   return (
     <Tabs screenOptions={{
@@ -36,6 +38,7 @@ export default function TabsLayout() {
         name="patients" 
         options={{
           title: 'Pacientes',
+          href: isGuest ? null : undefined, // Ocultar pestaña para invitados
           tabBarIcon: ({ color, size }) => (
             <Users size={22} color={color} />
           ),
@@ -45,6 +48,7 @@ export default function TabsLayout() {
         name="favorites" 
         options={{
           title: 'Favoritos',
+          href: isGuest ? null : undefined, // Ocultar pestaña para invitados
           tabBarIcon: ({ color, size }) => (
             <Heart size={22} color={color} />
           ),
