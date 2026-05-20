@@ -4,16 +4,21 @@ import { useAuthStore } from '../../src/store/authStore';
 import { useSearchStore } from '../../src/store/searchStore';
 
 const COMMON_SYMPTOMS = [
-  'Dolor',
-  'Fiebre',
-  'Disnea',
-  'Ansiedad',
   'Fatiga',
-  'Insomnio',
-  'Náuseas',
-  'Tos',
-  'Debilidad',
-  'Estreñimiento'
+  'Dificultad para respirar',
+  'Cianosis',
+  'Dolor abdominal',
+  'Dolor de cabeza',
+  'Aumento de peso',
+  'Pérdida de peso',
+  'Defecación infrecuente',
+  'Estrés o ansiedad',
+  'Falta de energía',
+  'Obesidad',
+  'Desnutrición',
+  'Mareos',
+  'Interés en aprender',
+  'Tos persistente'
 ];
 import { useAppTheme } from '../../src/styles/theme';
 import { Input } from '../../src/components/ui/Input';

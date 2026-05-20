@@ -1,10 +1,46 @@
-import { Stack } from 'expo-router';
+import { Tabs } from 'expo-router';
+import { Text } from 'react-native';
+import { useAppTheme } from '../../src/styles/theme';
 
 export default function TabsLayout() {
-  // Este layout de demostración se utiliza antes de implementar el sistema de 
-  // Bottom Tabs real que requiere el ícono de escudo y manejo dinámico.
-  // Permite renderizar y probar las vistas como un stack normal.
+  const { colors, typography, layout } = useAppTheme();
+
   return (
-    <Stack screenOptions={{ headerShown: false }} />
+    <Tabs screenOptions={{
+      headerShown: false,
+      tabBarActiveTintColor: colors.primary,
+      tabBarInactiveTintColor: colors.onSurfaceVariant,
+      tabBarStyle: {
+        backgroundColor: colors.surface,
+        borderTopWidth: 1,
+        borderTopColor: colors.outlineVariant,
+        height: 62,
+        paddingBottom: 8,
+        paddingTop: 6,
+      },
+      tabBarLabelStyle: {
+        fontFamily: typography.fonts.medium,
+        fontSize: 12,
+      }
+    }}>
+      <Tabs.Screen 
+        name="search" 
+        options={{
+          title: 'Buscar',
+          tabBarIcon: ({ color }) => (
+            <Text style={{ color, fontSize: 20 }}>🔍</Text>
+          ),
+        }}
+      />
+      <Tabs.Screen 
+        name="favorites" 
+        options={{
+          title: 'Favoritos',
+          tabBarIcon: ({ color }) => (
+            <Text style={{ color, fontSize: 20 }}>💖</Text>
+          ),
+        }}
+      />
+    </Tabs>
   );
 }

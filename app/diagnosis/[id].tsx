@@ -110,6 +110,46 @@ export default function DiagnosisDetailScreen() {
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.surfaceContainerLowest }}>
+      {/* Header de Volver Stitch */}
+      <View style={{ 
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        paddingTop: 45, 
+        paddingHorizontal: layout.spacing.md,
+        paddingBottom: layout.spacing.sm,
+        backgroundColor: colors.surface,
+        borderBottomWidth: 1,
+        borderBottomColor: colors.outlineVariant,
+      }}>
+        <TouchableOpacity 
+          activeOpacity={0.7}
+          onPress={() => router.back()}
+          style={{ 
+            flexDirection: 'row', 
+            alignItems: 'center',
+            height: 36,
+            paddingHorizontal: layout.spacing.sm,
+            borderRadius: layout.radius.sm,
+            borderWidth: 1,
+            borderColor: colors.outline,
+            backgroundColor: colors.surface,
+          }}
+        >
+          <Text style={{ fontFamily: typography.fonts.bold, color: colors.onSurface, fontSize: 13 }}>
+            ← Volver
+          </Text>
+        </TouchableOpacity>
+        <Text style={{ 
+          fontFamily: typography.fonts.bold, 
+          fontSize: 16, 
+          color: colors.onSurface, 
+          marginLeft: layout.spacing.md,
+          flex: 1
+        }} numberOfLines={1}>
+          Detalle Diagnóstico NANDA
+        </Text>
+      </View>
+
       <ScrollView contentContainerStyle={{ padding: layout.spacing.lg }}>
         
         <View style={{ backgroundColor: colors.primaryContainer, alignSelf: 'flex-start', paddingHorizontal: layout.spacing.sm, paddingVertical: 4, borderRadius: layout.radius.sm, marginBottom: layout.spacing.sm }}>
