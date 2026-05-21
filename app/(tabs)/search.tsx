@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert, ScrollView } from 'react-native';
+import { Building2, Shield, Stethoscope, LogOut, UserX, Clock, Trash2 } from 'lucide-react-native';
 import { useAuthStore } from '../../src/store/authStore';
 import { useSearchStore } from '../../src/store/searchStore';
 
@@ -152,7 +153,7 @@ export default function SearchTab() {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
               <View style={{ flex: 1, marginRight: layout.spacing.sm }}>
                 <Text style={{ fontFamily: typography.fonts.bold, fontSize: 18, color: colors.onSurface }}>
-                  🏥 Hola, {user ? (user.nombre_completo || user.usuario || '').split(' ')[0] : 'Enfermero'}!
+                  <Building2 size={18} color={colors.onSurface} /> Hola, {user ? (user.nombre_completo || user.usuario || '').split(' ')[0] : 'Enfermero'}!
                 </Text>
                 
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 6 }}>
@@ -165,9 +166,12 @@ export default function SearchTab() {
                     paddingVertical: 3, 
                     borderRadius: layout.radius.pill 
                   }}>
-                    <Text style={{ color: '#ffffff', fontSize: 11, fontFamily: typography.fonts.bold }}>
-                      {is_admin ? '🛡️ Administrador' : '🩺 Enfermero'}
-                    </Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                      {is_admin ? <Shield size={12} color="#ffffff" /> : <Stethoscope size={12} color="#ffffff" />}
+                      <Text style={{ color: '#ffffff', fontSize: 11, fontFamily: typography.fonts.bold }}>
+                        {is_admin ? 'Administrador' : 'Enfermero'}
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -189,13 +193,16 @@ export default function SearchTab() {
                   router.replace('/');
                 }}
               >
-                <Text style={{ 
-                  color: colors.error, 
-                  fontFamily: typography.fonts.bold, 
-                  fontSize: 12 
-                }}>
-                  Salir 🚪
-                </Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                  <Text style={{ 
+                    color: colors.error, 
+                    fontFamily: typography.fonts.bold, 
+                    fontSize: 12 
+                  }}>
+                    Salir
+                  </Text>
+                  <LogOut size={14} color={colors.error} />
+                </View>
               </TouchableOpacity>
             </View>
           </View>
@@ -203,9 +210,12 @@ export default function SearchTab() {
 
         {isGuest && (
           <View style={{ backgroundColor: colors.secondaryContainer, padding: layout.spacing.sm, borderRadius: layout.radius.sm, marginBottom: layout.spacing.md }}>
-            <Text style={{ color: colors.onSecondaryContainer, fontFamily: typography.fonts.medium, fontSize: 13, marginBottom: layout.spacing.xs }}>
-              👋 Estás en Modo Invitado. Solo puedes consultar el catálogo.
-            </Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: layout.spacing.xs, gap: 6 }}>
+              <UserX size={16} color={colors.onSecondaryContainer} />
+              <Text style={{ color: colors.onSecondaryContainer, fontFamily: typography.fonts.medium, fontSize: 13 }}>
+                Estás en Modo Invitado. Solo puedes consultar el catálogo.
+              </Text>
+            </View>
             <Button 
               title="Iniciar sesión" 
               variant="primary" 
@@ -299,7 +309,7 @@ export default function SearchTab() {
                   fetchDiagnoses(item);
                 }}
               >
-                <Text style={{ fontSize: 16, marginRight: layout.spacing.sm, color: colors.onSurfaceVariant }}>🕒</Text>
+                <Clock size={16} color={colors.onSurfaceVariant} style={{ marginRight: layout.spacing.sm }} />
                 <Text style={{ fontFamily: typography.fonts.regular, fontSize: 15, color: colors.onSurface, flex: 1 }}>
                   {item}
                 </Text>
@@ -311,9 +321,12 @@ export default function SearchTab() {
                 style={{ marginTop: layout.spacing.md, alignSelf: 'flex-start' }}
                 onPress={handleClearHistory}
               >
-                <Text style={{ fontFamily: typography.fonts.bold, color: colors.error, fontSize: 14 }}>
-                  Borrar historial 🗑️
-                </Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                  <Text style={{ fontFamily: typography.fonts.bold, color: colors.error, fontSize: 14 }}>
+                    Borrar historial
+                  </Text>
+                  <Trash2 size={16} color={colors.error} />
+                </View>
               </TouchableOpacity>
             }
           />

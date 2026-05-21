@@ -1,4 +1,5 @@
 import { useColorScheme } from 'react-native';
+import { useThemeStore } from '../store/themeStore';
 
 export const lightTheme = {
   primary: '#00694c',
@@ -89,7 +90,9 @@ export const layout = {
 
 export const useAppTheme = () => {
   const scheme = useColorScheme();
-  const isDark = scheme === 'dark';
+  const themeMode = useThemeStore((state) => state.themeMode);
+  
+  const isDark = themeMode === 'system' ? scheme === 'dark' : themeMode === 'dark';
   return {
     colors: isDark ? darkTheme : lightTheme,
     typography,

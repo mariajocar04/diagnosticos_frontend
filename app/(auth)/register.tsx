@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Alert, ScrollView } from 'react-native';
+import { Stethoscope } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
 import { authService } from '../../src/services/authService';
 import { useAppTheme } from '../../src/styles/theme';
@@ -45,9 +46,12 @@ export default function RegisterScreen() {
 
   return (
     <ScrollView contentContainerStyle={{ padding: layout.spacing.lg, backgroundColor: colors.surfaceContainerLowest, flexGrow: 1 }}>
-      <Text style={{ fontFamily: typography.fonts.bold, fontSize: 26, color: colors.onSurface, marginBottom: layout.spacing.lg, marginTop: 20 }}>
-        Crea tu cuenta clínica 🩺
-      </Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: layout.spacing.lg, marginTop: 20, gap: 8 }}>
+        <Text style={{ fontFamily: typography.fonts.bold, fontSize: 26, color: colors.onSurface }}>
+          Crea tu cuenta clínica
+        </Text>
+        <Stethoscope size={26} color={colors.onSurface} />
+      </View>
       
       <Input 
         label="Nombre Completo" 

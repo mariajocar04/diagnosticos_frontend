@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert } from 'react-native';
+import { Heart, Lock, ClipboardList, Hourglass } from 'lucide-react-native';
 import { useAuthStore } from '../../src/store/authStore';
 import { useSearchStore } from '../../src/store/searchStore';
 import { useAppTheme } from '../../src/styles/theme';
@@ -83,11 +84,13 @@ export default function FavoritesTab() {
           <TouchableOpacity 
             onPress={() => handleRemoveFavorite(item.codigo)}
             disabled={isRemoving}
-            style={{ padding: 4 }}
-          >
-            <Text style={{ fontSize: 20, color: colors.primary }}>
-              {isRemoving ? '⏳' : '♥'}
-            </Text>
+            <View style={{ padding: 4 }}>
+              {isRemoving ? (
+                <Hourglass size={20} color={colors.primary} />
+              ) : (
+                <Heart size={20} color={colors.primary} fill={colors.primary} />
+              )}
+            </View>
           </TouchableOpacity>
         </View>
 
@@ -104,7 +107,7 @@ export default function FavoritesTab() {
     return (
       <View style={{ flex: 1, backgroundColor: colors.background, padding: layout.spacing.lg, justifyContent: 'center', alignItems: 'center' }}>
         <View style={{ backgroundColor: colors.surface, padding: layout.spacing.xl, borderRadius: layout.radius.md, borderWidth: 1, borderColor: colors.outlineVariant, alignItems: 'center', width: '100%' }}>
-          <Text style={{ fontSize: 48, marginBottom: layout.spacing.md }}>🔒</Text>
+          <Lock size={48} color={colors.onSurface} style={{ marginBottom: layout.spacing.md }} />
           <Text style={{ fontFamily: typography.fonts.bold, fontSize: 18, color: colors.onSurface, marginBottom: layout.spacing.sm, textAlign: 'center' }}>
             Favoritos Protegidos
           </Text>
@@ -128,9 +131,12 @@ export default function FavoritesTab() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View style={{ padding: layout.spacing.md, backgroundColor: colors.surface, borderBottomWidth: 1, borderBottomColor: colors.outlineVariant }}>
-        <Text style={{ fontFamily: typography.fonts.bold, fontSize: 22, color: colors.onSurface }}>
-          Mis Favoritos 💖
-        </Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+          <Text style={{ fontFamily: typography.fonts.bold, fontSize: 22, color: colors.onSurface }}>
+            Mis Favoritos
+          </Text>
+          <Heart size={22} color={colors.onSurface} fill={colors.onSurface} />
+        </View>
         <Text style={{ fontFamily: typography.fonts.regular, fontSize: 13, color: colors.onSurfaceVariant, marginTop: 2 }}>
           Listado de diagnósticos rápidos de uso clínico
         </Text>
@@ -150,7 +156,7 @@ export default function FavoritesTab() {
           refreshing={isLoading}
           ListEmptyComponent={
             <View style={{ flex: 1, alignItems: 'center', marginTop: 60, paddingHorizontal: layout.spacing.lg }}>
-              <Text style={{ fontSize: 48, marginBottom: layout.spacing.md }}>📋</Text>
+              <ClipboardList size={48} color={colors.onSurfaceVariant} style={{ marginBottom: layout.spacing.md }} />
               <Text style={{ fontFamily: typography.fonts.bold, fontSize: 16, color: colors.onSurface, marginBottom: layout.spacing.xs, textAlign: 'center' }}>
                 Sin favoritos guardados
               </Text>
