@@ -1,11 +1,11 @@
 import { api } from './api';
 
 export const nandaService = {
-  searchDiagnoses: async (query?: string, filters?: any) => {
-    // Assuming backend takes query params or body
-    const params = query ? { search: query, ...filters } : { ...filters };
-    const response = await api.get('/diagnosticos', { params });
-    return response.data;
+  searchDiagnoses: async (q?: string) => {
+      const params = q ? { q } : {};
+      const response = await api.get('/diagnosticos', { params });
+      const data = response.data;
+      return data;
   },
 
   getDiagnosisById: async (id: string | number) => {

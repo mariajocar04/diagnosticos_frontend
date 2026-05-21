@@ -1,29 +1,29 @@
-import { api } from './api';
 import { UserProfile } from '../types/base_type';
+import { api } from './api';
 
 export const adminService = {
   getMetrics: async () => {
-    const response = await api.get('/admin/metrics');
+    const response = await api.get('/metrics');
     return response.data;
   },
 
   getUsuarios: async (): Promise<UserProfile[]> => {
-    const response = await api.get('/admin/usuarios');
+    const response = await api.get('/usuarios');
     return response.data;
   },
 
   updateUsuarioEstado: async (userId: number, activo: boolean) => {
-    const response = await api.patch(`/admin/usuarios/${userId}/estado`, { activo });
+    const response = await api.patch(`/usuarios/${userId}/estado`, { activo });
     return response.data;
   },
 
-  updateUsuarioRol: async (userId: number, nuevo_rol: string) => {
-    const response = await api.patch(`/admin/usuarios/${userId}/rol`, { nuevo_rol });
+  updateUsuarioRol: async (userId: number, rol_id: number) => {
+    const response = await api.patch(`/usuarios/${userId}/rol`, { rol_id });
     return response.data;
   },
 
   getAuditoria: async () => {
-    const response = await api.get('/admin/auditoria');
+    const response = await api.get('/auditoria');
     return response.data;
   }
 };

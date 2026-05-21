@@ -84,7 +84,9 @@ export default function FavoritesTab() {
           <TouchableOpacity 
             onPress={() => handleRemoveFavorite(item.codigo)}
             disabled={isRemoving}
-            <View style={{ padding: 4 }}>
+            style={{ padding: 4 }}
+          >
+            <View>
               {isRemoving ? (
                 <Hourglass size={20} color={colors.primary} />
               ) : (

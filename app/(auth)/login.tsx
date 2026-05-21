@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { View, Text, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
-import { useAuthStore } from '../../src/store/authStore';
-import { authService } from '../../src/services/authService';
-import { useAppTheme } from '../../src/styles/theme';
+import React, { useState } from 'react';
+import { Alert, Image, Text, View } from 'react-native';
 import { Button } from '../../src/components/ui/Button';
 import { Input } from '../../src/components/ui/Input';
+import { authService } from '../../src/services/authService';
+import { useAuthStore } from '../../src/store/authStore';
+import { useAppTheme } from '../../src/styles/theme';
 
 export default function LoginScreen() {
   const { colors, layout, typography } = useAppTheme();
@@ -39,24 +39,10 @@ export default function LoginScreen() {
       setGuestMode(false);
       router.replace('/(tabs)/search');
       
-    } catch (error) {
-      console.warn('Fallo en API de login. Iniciando MOCK DEMO para la prueba de vista.', error);
-      
-      // MOCK FALLBACK: Permite demostrar las vistas aunque el backend esté desconectado
-      const isMockAdmin = email.includes('admin');
-      
-      await setToken(isMockAdmin ? 'mock-admin-token' : 'mock-nurse-token');
-      setUser({ 
-        id: isMockAdmin ? 1 : 2, 
-        usuario: email.split('@')[0],
-        email: email, 
-        nombre_completo: isMockAdmin ? 'Dra. Administradora' : 'Lic. Enfermero Base', 
-        roles: [{ nombre: isMockAdmin ? 'administrador' : 'enfermero' }], 
-        activo: true 
-      });
-      
-      setGuestMode(false);
-      router.replace('/(tabs)/search');
+    } catch (error: any) {
+      console.warn('Fallo en API de login:', error);
+      const message = 'No se pudo iniciar sesión. Verifica tus credenciales y la conexión.';
+      Alert.alert('Error de autenticación', message);
     } finally {
       setIsLoading(false);
     }
@@ -64,9 +50,35 @@ export default function LoginScreen() {
 
   return (
     <View style={{ flex: 1, padding: layout.spacing.lg, backgroundColor: colors.surfaceContainerLowest }}>
-      <Text style={{ fontFamily: typography.fonts.bold, fontSize: 28, color: colors.onSurface, marginBottom: layout.spacing.lg }}>
-        ¡Bienvenido de nuevo!
-      </Text>
+      <View style={{ alignItems: 'center', marginBottom: layout.spacing.xl, marginTop: layout.spacing.lg }}>
+        <View style={{ 
+          backgroundColor: '#ffffff', // Fondo blanco para que el JPEG se vea bien en tema oscuro si tiene fondo
+          padding: 8, 
+          borderRadius: 20, 
+          marginBottom: layout.spacing.md,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+          elevation: 3
+        }}>
+          <Image 
+            source={require('../../assets/images/logo.jpeg')} 
+            style={{ 
+              width: 120, 
+              height: 120, 
+              borderRadius: 16 
+            }} 
+            resizeMode="contain"
+          />
+        </View>
+        <Text style={{ fontFamily: typography.fonts.bold, fontSize: 28, color: colors.onSurface, textAlign: 'center' }}>
+          TICOS NurseDx
+        </Text>
+        <Text style={{ fontFamily: typography.fonts.regular, fontSize: 14, color: colors.onSurfaceVariant, textAlign: 'center', marginTop: 4 }}>
+          ¡Bienvenido de nuevo!
+        </Text>
+      </View>
       
       <Input 
         label="Usuario (Email)" 
@@ -92,12 +104,7 @@ export default function LoginScreen() {
       
       <Button title="Ingresar" onPress={handleLogin} isLoading={isLoading} />
       
-      <View style={{ marginTop: layout.spacing.xl, padding: layout.spacing.md, backgroundColor: colors.surfaceContainer, borderRadius: layout.radius.md }}>
-         <Text style={{ fontFamily: typography.fonts.medium, color: colors.onSurfaceVariant }}>Tip de Demo de Roles:</Text>
-         <Text style={{ fontFamily: typography.fonts.regular, color: colors.onSurfaceVariant, fontSize: 12, marginTop: 4 }}>
-           Escribe "admin@ticos.com" para entrar a la vista Administrador, o cualquier otro correo para la vista de Enfermero.
-         </Text>
-      </View>
+      
     </View>
   );
 }

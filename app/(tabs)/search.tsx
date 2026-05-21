@@ -1,8 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert, ScrollView } from 'react-native';
-import { Building2, Shield, Stethoscope, LogOut, UserX, Clock, Trash2 } from 'lucide-react-native';
+import { useRouter } from 'expo-router';
+import { Building2, Clock, LogOut, Shield, Stethoscope, Trash2, UserX } from 'lucide-react-native';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, Alert, FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Button } from '../../src/components/ui/Button';
+import { InfoCard } from '../../src/components/ui/InfoCard';
+import { Input } from '../../src/components/ui/Input';
+import { nandaService } from '../../src/services/nandaService';
 import { useAuthStore } from '../../src/store/authStore';
 import { useSearchStore } from '../../src/store/searchStore';
+import { useAppTheme } from '../../src/styles/theme';
+import { NandaCatalog } from '../../src/types/base_type';
 
 const COMMON_SYMPTOMS = [
   'Fatiga',
@@ -21,13 +28,6 @@ const COMMON_SYMPTOMS = [
   'Interés en aprender',
   'Tos persistente'
 ];
-import { useAppTheme } from '../../src/styles/theme';
-import { Input } from '../../src/components/ui/Input';
-import { InfoCard } from '../../src/components/ui/InfoCard';
-import { Button } from '../../src/components/ui/Button';
-import { nandaService } from '../../src/services/nandaService';
-import { NandaCatalog } from '../../src/types/base_type';
-import { useRouter } from 'expo-router';
 
 export default function SearchTab() {
   const { colors, typography, layout } = useAppTheme();
@@ -54,14 +54,16 @@ export default function SearchTab() {
     setIsLoading(true);
     try {
       const res = await nandaService.searchDiagnoses(searchQuery);
-      setResults(res.datos || []);
+      const diagResults = res?.datos || [];
+      setResults(diagResults);
       
       // Refresh history from backend if a query was made by professional user
       if (searchQuery.trim() && !isGuest) {
         fetchSearchHistory();
       }
-    } catch (e) {
-      console.warn("Fallo al obtener NANDA", e);
+    } catch (e: any) {
+      Alert.alert('Error', `Error al buscar diagnósticos: ${e.message}`);
+      setResults([]);
     } finally {
       setIsLoading(false);
     }
@@ -70,10 +72,10 @@ export default function SearchTab() {
   const fetchSearchHistory = async () => {
     try {
       const res = await nandaService.getHistorial();
-      const terms = res.datos.map((d: any) => d.termino);
+      const terms = res?.datos?.map((d: any) => d.termino) || [];
       setRecentSearches(terms);
-    } catch (e) {
-      console.warn("Error al cargar historial", e);
+    } catch (e: any) {
+      console.warn("Error al cargar historial", e.message);
     }
   };
 

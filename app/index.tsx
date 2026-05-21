@@ -1,9 +1,9 @@
+import { Redirect, useRouter } from 'expo-router';
 import React from 'react';
-import { View, Text } from 'react-native';
-import { useRouter, Redirect } from 'expo-router';
+import { Image, Text, View } from 'react-native';
+import { Button } from '../src/components/ui/Button';
 import { useAuthStore } from '../src/store/authStore';
 import { useAppTheme } from '../src/styles/theme';
-import { Button } from '../src/components/ui/Button';
 
 export default function OnboardingScreen() {
   const { colors, typography, layout } = useAppTheme();
@@ -21,11 +21,29 @@ export default function OnboardingScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: colors.surfaceContainerLowest, alignItems: 'center', justifyContent: 'center', padding: layout.spacing.lg }}>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <View style={{ width: 80, height: 80, backgroundColor: colors.primaryContainer + '1A', borderRadius: layout.radius.md, justifyContent: 'center', alignItems: 'center', marginBottom: layout.spacing.md }}>
-          <Text style={{ fontSize: 40 }}>🏥</Text>
+        <View style={{ 
+          backgroundColor: '#ffffff',
+          padding: 8, 
+          borderRadius: 20, 
+          marginBottom: layout.spacing.md,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 4,
+          elevation: 3
+        }}>
+          <Image 
+            source={require('../assets/images/logo.jpeg')} 
+            style={{ 
+              width: 100, 
+              height: 100, 
+              borderRadius: 16 
+            }} 
+            resizeMode="contain"
+          />
         </View>
         <Text style={{ fontFamily: typography.fonts.bold, fontSize: 24, color: colors.primary, marginBottom: layout.spacing.sm }}>
-          TICOS NurseDx
+          TICOS
         </Text>
         <Text style={{ fontFamily: typography.fonts.regular, fontSize: 16, color: colors.onSurfaceVariant, textAlign: 'center', paddingHorizontal: layout.spacing.xl }}>
           Diagnósticos de enfermería al alcance de tu mano

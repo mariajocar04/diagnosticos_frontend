@@ -1,14 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList, ActivityIndicator, Alert } from 'react-native';
-import { useLocalSearchParams, useRouter, useFocusEffect } from 'expo-router';
-import { useAppTheme } from '../../../src/styles/theme';
-import { useAuthStore } from '../../../src/store/authStore';
-import { patientService } from '../../../src/services/patientService';
-import { Patient, DiagnosticoClinico } from '../../../src/types/base_type';
+import * as FileSystem from 'expo-file-system/legacy';
+import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
+import * as Sharing from 'expo-sharing';
+import { Calendar, ChevronLeft, Edit, FileText, FolderHeart, Plus, Trash2 } from 'lucide-react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ActivityIndicator, Alert, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import NotesTab from '../../../src/components/NotesTab';
 import TimelineTab from '../../../src/components/TimelineTab';
 import { InfoCard } from '../../../src/components/ui/InfoCard';
-import { ChevronLeft, Trash2, Edit, Plus, FolderHeart, Calendar } from 'lucide-react-native';
+import { patientService } from '../../../src/services/patientService';
+import { reporteService } from '../../../src/services/reporteService';
+import { useAuthStore } from '../../../src/store/authStore';
+import { useAppTheme } from '../../../src/styles/theme';
+import { DiagnosticoClinico, Patient } from '../../../src/types/base_type';
 
 type TabType = 'diagnosticos' | 'notas' | 'historial';
 
@@ -136,6 +139,37 @@ export default function PatientDetailScreen() {
     router.push(`/patient/${patientId}/assign`);
   };
 
+  const handleExportPdf = async () => {
+    try {
+      Alert.alert('Exportando...', 'Generando el PDF de la historia clínica...');
+      const blob = await reporteService.exportPatientPdf(patientId);
+      
+      const reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onloadend = async () => {
+        const base64data = (reader.result as string).split(',')[1];
+        const fileUri = `${FileSystem.documentDirectory}historia_clinica_${patientId}.pdf`;
+        
+        await FileSystem.writeAsStringAsync(fileUri, base64data, {
+          encoding: 'base64'
+        });
+        
+        if (await Sharing.isAvailableAsync()) {
+          await Sharing.shareAsync(fileUri, {
+            mimeType: 'application/pdf',
+            dialogTitle: 'Historia Clínica PDF',
+            UTI: 'com.adobe.pdf'
+          });
+        } else {
+          Alert.alert('Éxito', 'El PDF se ha guardado en el dispositivo.');
+        }
+      };
+    } catch (e) {
+      console.warn('Error al exportar PDF', e);
+      Alert.alert('Error', 'No se pudo exportar el PDF. Asegúrate de tener permisos suficientes.');
+    }
+  };
+
   const getInitials = (name: string) => {
     if (!name) return 'P';
     return name
@@ -253,13 +287,22 @@ export default function PatientDetailScreen() {
         {/* Acciones de Cabecera */}
         <View style={styles.headerActions}>
           {!isGuest && (
-            <TouchableOpacity 
-              style={styles.actionButton} 
-              onPress={handleEditPatient}
-              activeOpacity={0.7}
-            >
-              <Edit size={20} color={colors.secondary} />
-            </TouchableOpacity>
+            <>
+              <TouchableOpacity 
+                style={styles.actionButton} 
+                onPress={handleExportPdf}
+                activeOpacity={0.7}
+              >
+                <FileText size={20} color={colors.primary} />
+              </TouchableOpacity>
+              <TouchableOpacity 
+                style={[styles.actionButton, { marginLeft: 4 }]} 
+                onPress={handleEditPatient}
+                activeOpacity={0.7}
+              >
+                <Edit size={20} color={colors.secondary} />
+              </TouchableOpacity>
+            </>
           )}
           {is_admin && (
             <TouchableOpacity 
