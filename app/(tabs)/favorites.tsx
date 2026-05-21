@@ -5,7 +5,7 @@ import { useSearchStore } from '../../src/store/searchStore';
 import { useAppTheme } from '../../src/styles/theme';
 import { InfoCard } from '../../src/components/ui/InfoCard';
 import { Button } from '../../src/components/ui/Button';
-import { api } from '../../src/services/api';
+import { nandaService } from '../../src/services/nandaService';
 import { NandaCatalog } from '../../src/types/base_type';
 import { useRouter } from 'expo-router';
 
@@ -31,11 +31,11 @@ export default function FavoritesTab() {
   const fetchFavorites = async () => {
     setIsLoading(true);
     try {
-      const res = await api.get('/diagnosticos/favoritos');
-      // res.data has total and datos
-      setFavoriteList(res.data.datos || []);
+      const res = await nandaService.getFavoritos();
+      // res has total and datos
+      setFavoriteList(res.datos || []);
       
-      const codes = (res.data.datos || []).map((d: NandaCatalog) => d.codigo);
+      const codes = (res.datos || []).map((d: NandaCatalog) => d.codigo);
       setFavorites(codes);
     } catch (e) {
       console.warn("Fallo al obtener favoritos", e);
@@ -47,7 +47,7 @@ export default function FavoritesTab() {
   const handleRemoveFavorite = async (codigo: string) => {
     setIsTogglingMap(prev => ({ ...prev, [codigo]: true }));
     try {
-      await api.post(`/diagnosticos/${codigo}/favorito`);
+      await nandaService.toggleFavorito(codigo);
       toggleFavoriteLocal(codigo);
       setFavoriteList(prev => prev.filter(item => item.codigo !== codigo));
     } catch (e) {

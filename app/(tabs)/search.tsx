@@ -24,7 +24,7 @@ import { useAppTheme } from '../../src/styles/theme';
 import { Input } from '../../src/components/ui/Input';
 import { InfoCard } from '../../src/components/ui/InfoCard';
 import { Button } from '../../src/components/ui/Button';
-import { api } from '../../src/services/api';
+import { nandaService } from '../../src/services/nandaService';
 import { NandaCatalog } from '../../src/types/base_type';
 import { useRouter } from 'expo-router';
 
@@ -52,8 +52,8 @@ export default function SearchTab() {
   const fetchDiagnoses = async (searchQuery: string = '') => {
     setIsLoading(true);
     try {
-      const res = await api.get(`/diagnosticos?q=${searchQuery}`);
-      setResults(res.data.datos || []);
+      const res = await nandaService.searchDiagnoses(searchQuery);
+      setResults(res.datos || []);
       
       // Refresh history from backend if a query was made by professional user
       if (searchQuery.trim() && !isGuest) {
@@ -68,8 +68,8 @@ export default function SearchTab() {
 
   const fetchSearchHistory = async () => {
     try {
-      const res = await api.get('/diagnosticos/historial');
-      const terms = res.data.datos.map((d: any) => d.termino);
+      const res = await nandaService.getHistorial();
+      const terms = res.datos.map((d: any) => d.termino);
       setRecentSearches(terms);
     } catch (e) {
       console.warn("Error al cargar historial", e);
@@ -78,7 +78,7 @@ export default function SearchTab() {
 
   const handleClearHistory = async () => {
     try {
-      await api.delete('/diagnosticos/historial');
+      await nandaService.clearHistorial();
       clearRecentSearches();
     } catch (e) {
       console.warn("Error al limpiar historial", e);

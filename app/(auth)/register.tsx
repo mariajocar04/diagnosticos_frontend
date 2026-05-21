@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Alert, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
-import { api } from '../../src/services/api';
+import { authService } from '../../src/services/authService';
 import { useAppTheme } from '../../src/styles/theme';
 import { Button } from '../../src/components/ui/Button';
 import { Input } from '../../src/components/ui/Input';
@@ -24,7 +24,7 @@ export default function RegisterScreen() {
 
     setIsLoading(true);
     try {
-      await api.post('/auth/register', {
+      await authService.register({
         nombre_completo: nombreCompleto.trim(),
         usuario: usuario.trim(),
         email: email.trim(),

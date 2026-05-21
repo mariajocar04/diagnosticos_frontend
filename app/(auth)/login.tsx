@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useAuthStore } from '../../src/store/authStore';
-import { api } from '../../src/services/api';
+import { authService } from '../../src/services/authService';
 import { useAppTheme } from '../../src/styles/theme';
 import { Button } from '../../src/components/ui/Button';
 import { Input } from '../../src/components/ui/Input';
@@ -27,18 +27,15 @@ export default function LoginScreen() {
     
     setIsLoading(true);
     try {
-      // Petición real al backend FastAPI (espera JSON según schemas/auth.py -> UsuarioLogin)
-      const res = await api.post('/auth/login', {
-        email: email,
-        password: password
-      });
+      // Petición real al backend FastAPI usando authService
+      const res = await authService.login(email, password);
       
-      await setToken(res.data.access_token);
+      await setToken(res.access_token);
       
       // Obtener el perfil del usuario autenticado
-      const userRes = await api.get('/auth/me'); // El interceptor ya pone el token
+      const userRes = await authService.getMe(); // El interceptor ya pone el token
       
-      setUser(userRes.data);
+      setUser(userRes);
       setGuestMode(false);
       router.replace('/(tabs)/search');
       

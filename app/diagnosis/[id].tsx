@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, ActivityIndicator, Alert, TouchableOpacity, Modal, FlatList, StyleSheet } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { api } from '../../src/services/api';
+import { nandaService } from '../../src/services/nandaService';
 import { NandaCatalog, Patient } from '../../src/types/base_type';
 import { useAppTheme } from '../../src/styles/theme';
 import { Button } from '../../src/components/ui/Button';
@@ -43,8 +43,8 @@ export default function DiagnosisDetailScreen() {
 
   const fetchDetail = async () => {
     try {
-      const res = await api.get(`/diagnosticos/${id}`);
-      setDiagnosis(res.data);
+      const res = await nandaService.getDiagnosisById(id as string);
+      setDiagnosis(res);
     } catch (e) {
       console.warn('Error fetching detail', e);
       Alert.alert('Error', 'No se pudo cargar el diagnóstico');
@@ -56,8 +56,8 @@ export default function DiagnosisDetailScreen() {
 
   const fetchFavorites = async () => {
     try {
-      const res = await api.get('/diagnosticos/favoritos');
-      const favoriteCodes = res.data.datos.map((d: any) => d.codigo);
+      const res = await nandaService.getFavoritos();
+      const favoriteCodes = res.datos.map((d: any) => d.codigo);
       setFavorites(favoriteCodes);
     } catch (e) {
       console.warn("Fallo al obtener favoritos de la API", e);
@@ -84,7 +84,7 @@ export default function DiagnosisDetailScreen() {
 
     setIsTogglingFav(true);
     try {
-      await api.post(`/diagnosticos/${diagnosis.codigo}/favorito`);
+      await nandaService.toggleFavorito(diagnosis.codigo);
       toggleFavoriteLocal(diagnosis.codigo);
     } catch (e) {
       console.warn("Fallo al guardar/quitar favorito", e);
