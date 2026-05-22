@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator, Alert, StyleSheet } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
 import { authService } from '../../src/services/authService';
 import { useAuthStore } from '../../src/store/authStore';
 import { useThemeStore } from '../../src/store/themeStore';
@@ -19,13 +19,15 @@ export default function ProfileTab() {
   const setThemeMode = useThemeStore((state) => state.setThemeMode);
 
   const [profile, setProfile] = useState<UserProfile | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(!isGuest);
 
-  useEffect(() => {
-    if (!isGuest) {
-      fetchProfile();
-    }
-  }, [isGuest]);
+  useFocusEffect(
+    useCallback(() => {
+      if (!isGuest) {
+        fetchProfile();
+      }
+    }, [isGuest])
+  );
 
   const fetchProfile = async () => {
     setIsLoading(true);
@@ -181,7 +183,7 @@ export default function ProfileTab() {
               </TouchableOpacity>
             </InfoCard>
 
-            <View style={{ alignItems: 'center', marginTop: layout.spacing.xxl, paddingBottom: 40 }}>
+            <View style={{ alignItems: 'center', marginTop: layout.spacing.xl * 1.5, paddingBottom: 40 }}>
               <Text style={{ fontFamily: typography.fonts.bold, fontSize: 16, color: colors.primary }}>
                 TICOS NurseDx
               </Text>

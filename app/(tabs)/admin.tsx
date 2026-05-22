@@ -1,6 +1,6 @@
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
 import { Activity, FileText, ShieldAlert, UserCheck, Users, Building, SquareKanban } from 'lucide-react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { InfoCard } from '../../src/components/ui/InfoCard';
 import { adminService } from '../../src/services/adminService';
@@ -17,11 +17,13 @@ export default function AdminTab() {
   const is_admin = user?.roles?.some(r => r.nombre === 'administrador');
   const router = useRouter();
 
-  useEffect(() => {
-    if (is_admin) {
-      fetchMetrics();
-    }
-  }, [is_admin]);
+  useFocusEffect(
+    useCallback(() => {
+      if (is_admin) {
+        fetchMetrics();
+      }
+    }, [is_admin])
+  );
 
   const fetchMetrics = async () => {
     setIsLoading(true);

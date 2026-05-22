@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
-import { Stack, useRouter } from 'expo-router';
+import { Stack, useRouter, useFocusEffect } from 'expo-router';
 import { ArrowLeft, Clock } from 'lucide-react-native';
 import { useAppTheme } from '../../src/styles/theme';
 import { adminService } from '../../src/services/adminService';
+import { remissionService } from '../../src/services/remissionService';
 import { UnidadBoardColumn, Remision } from '../../src/types/base_type';
 
 export default function ActiveRemissionsBoardScreen() {
@@ -12,20 +13,65 @@ export default function ActiveRemissionsBoardScreen() {
   const [boardData, setBoardData] = useState<UnidadBoardColumn[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadBoard();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      loadBoard();
+    }, [])
+  );
 
   const loadBoard = async () => {
     setLoading(true);
     try {
       const data = await adminService.getRemissionsBoard();
       setBoardData(data);
-    } catch (error) {
-      Alert.alert('Error', 'No se pudo cargar el tablero de remisiones');
+    } catch (error: any) {
+      console.error(error);
+      const msg = error.response?.data?.detail || error.message || 'No se pudo cargar el tablero de remisiones';
+      Alert.alert('Error', msg);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleActivateRemission = async (id: number) => {
+    setLoading(true);
+    try {
+      await remissionService.changeState(id, 'ACTIVA');
+      Alert.alert('Éxito', 'Remisión activada e ingreso registrado correctamente.');
+      await loadBoard();
+    } catch (error: any) {
+      console.error(error);
+      const msg = error.response?.data?.detail || error.message || 'No se pudo activar la remisión';
+      Alert.alert('Error', msg);
+      setLoading(false);
+    }
+  };
+
+  const handleDischargeRemission = async (id: number) => {
+    Alert.alert(
+      'Confirmar Egreso',
+      '¿Está seguro de que desea egresar a este paciente de la unidad?',
+      [
+        { text: 'Cancelar', style: 'cancel' },
+        {
+          text: 'Confirmar Egreso',
+          style: 'destructive',
+          onPress: async () => {
+            setLoading(true);
+            try {
+              await remissionService.changeState(id, 'EGRESADO');
+              Alert.alert('Éxito', 'Paciente egresado correctamente.');
+              await loadBoard();
+            } catch (error: any) {
+              console.error(error);
+              const msg = error.response?.data?.detail || error.message || 'No se pudo egresar al paciente';
+              Alert.alert('Error', msg);
+              setLoading(false);
+            }
+          }
+        }
+      ]
+    );
   };
 
   const getPriorityColor = (priority: string) => {
@@ -39,13 +85,17 @@ export default function ActiveRemissionsBoardScreen() {
 
   const renderCard = (remision: Remision) => {
     const priorityColor = getPriorityColor(remision.prioridad);
-    const dateStr = remision.fecha_ingreso ? new Date(remision.fecha_ingreso).toLocaleDateString() : '';
+    const isPending = remision.estado === 'PENDIENTE';
+    const isActive = remision.estado === 'ACTIVA';
+    
+    // Si está pendiente, usar fecha_remision. Si está activa, usar fecha_ingreso.
+    const displayDate = isActive ? remision.fecha_ingreso : remision.fecha_remision;
+    const dateStr = displayDate ? new Date(displayDate).toLocaleDateString() : '';
 
     return (
-      <TouchableOpacity 
+      <View 
         key={remision.id} 
         style={[styles.remissionCard, { backgroundColor: colors.surface, borderLeftColor: priorityColor }]}
-        onPress={() => router.push(`/patient/${remision.paciente_id}`)}
       >
         <View style={styles.cardHeader}>
           <Text style={[styles.patientName, { color: colors.onSurface, fontFamily: typography.fonts.bold }]} numberOfLines={1}>
@@ -53,19 +103,63 @@ export default function ActiveRemissionsBoardScreen() {
           </Text>
         </View>
         
-        <View style={[styles.priorityBadge, { backgroundColor: priorityColor + '20' }]}>
-          <Text style={[styles.priorityText, { color: priorityColor, fontFamily: typography.fonts.bold }]}>
-            {remision.prioridad}
-          </Text>
+        <View style={styles.badgesRow}>
+          <View style={[styles.priorityBadge, { backgroundColor: priorityColor + '20' }]}>
+            <Text style={[styles.priorityText, { color: priorityColor, fontFamily: typography.fonts.bold }]}>
+              {remision.prioridad}
+            </Text>
+          </View>
+          
+          <View style={[styles.statusBadge, { backgroundColor: isPending ? colors.warning + '20' : colors.primary + '20' }]}>
+            <Text style={[styles.statusText, { color: isPending ? colors.warning : colors.primary, fontFamily: typography.fonts.bold }]}>
+              {remision.estado}
+            </Text>
+          </View>
         </View>
 
         <View style={styles.cardFooter}>
           <Clock size={14} color={colors.onSurfaceVariant} />
           <Text style={[styles.dateText, { color: colors.onSurfaceVariant, fontFamily: typography.fonts.regular }]}>
-            Ingreso: {dateStr}
+            {isPending ? 'Solicitado: ' : 'Ingreso: '}{dateStr}
           </Text>
         </View>
-      </TouchableOpacity>
+
+        <View style={styles.actionButtonsContainer}>
+          <TouchableOpacity 
+            style={[styles.actionBtn, { backgroundColor: colors.surfaceContainerHigh }]} 
+            onPress={() => router.push(`/patient/${remision.paciente_id}`)}
+            activeOpacity={0.7}
+          >
+            <Text style={[styles.actionBtnText, { color: colors.onSurface, fontFamily: typography.fonts.medium }]}>
+              Ver Ficha
+            </Text>
+          </TouchableOpacity>
+
+          {isPending && (
+            <TouchableOpacity 
+              style={[styles.actionBtn, { backgroundColor: colors.primary }]} 
+              onPress={() => handleActivateRemission(remision.id)}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.actionBtnText, { color: colors.onPrimary, fontFamily: typography.fonts.bold }]}>
+                Activar
+              </Text>
+            </TouchableOpacity>
+          )}
+
+          {isActive && (
+            <TouchableOpacity 
+              style={[styles.actionBtn, { backgroundColor: colors.error }]} 
+              onPress={() => handleDischargeRemission(remision.id)}
+              activeOpacity={0.7}
+            >
+              <Text style={[styles.actionBtnText, { color: colors.onError, fontFamily: typography.fonts.bold }]}>
+                Egresar
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      </View>
     );
   };
 
@@ -186,10 +280,42 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 4,
-    marginBottom: 8,
   },
   priorityText: {
     fontSize: 10,
+  },
+  badgesRow: {
+    flexDirection: 'row',
+    gap: 8,
+    marginBottom: 8,
+  },
+  statusBadge: {
+    alignSelf: 'flex-start',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 4,
+  },
+  statusText: {
+    fontSize: 10,
+  },
+  actionButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 8,
+    marginTop: 12,
+    borderTopWidth: 1,
+    borderTopColor: '#f0f0f0',
+    paddingTop: 8,
+  },
+  actionBtn: {
+    flex: 1,
+    paddingVertical: 6,
+    borderRadius: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  actionBtnText: {
+    fontSize: 12,
   },
   cardFooter: {
     flexDirection: 'row',

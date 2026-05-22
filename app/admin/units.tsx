@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator, Alert, Modal, TextInput } from 'react-native';
-import { Stack, useRouter } from 'expo-router';
+import { Stack, useRouter, useFocusEffect } from 'expo-router';
 import { Building, Plus, ArrowLeft, X } from 'lucide-react-native';
 import { useAppTheme } from '../../src/styles/theme';
 import { Input } from '../../src/components/ui/Input';
@@ -14,12 +14,14 @@ export default function UnitsManagementScreen() {
   const [unidades, setUnidades] = useState<Unidad[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
-  const [newUnit, setNewUnit] = useState({ nombre: '', tipo: '', capacidad: '', descripcion: '' });
+  const [newUnit, setNewUnit] = useState({ codigo: '', nombre: '', tipo: '', capacidad: '', descripcion: '' });
   const [isSaving, setIsSaving] = useState(false);
 
-  useEffect(() => {
-    loadUnidades();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      loadUnidades();
+    }, [])
+  );
 
   const loadUnidades = async () => {
     setLoading(true);
@@ -34,25 +36,27 @@ export default function UnitsManagementScreen() {
   };
 
   const handleCreateUnit = async () => {
-    if (!newUnit.nombre || !newUnit.tipo || !newUnit.capacidad) {
-      Alert.alert('Error', 'Por favor llena los campos obligatorios (Nombre, Tipo, Capacidad)');
+    if (!newUnit.codigo || !newUnit.nombre || !newUnit.tipo || !newUnit.capacidad) {
+      Alert.alert('Error', 'Por favor llena los campos obligatorios (Código, Nombre, Tipo, Capacidad)');
       return;
     }
     
     setIsSaving(true);
     try {
       await unidadService.createUnidad({
-        nombre: newUnit.nombre,
-        tipo: newUnit.tipo,
+        codigo: newUnit.codigo.trim(),
+        nombre: newUnit.nombre.trim(),
+        tipo: newUnit.tipo.trim(),
         capacidad: parseInt(newUnit.capacidad),
-        descripcion: newUnit.descripcion
+        descripcion: newUnit.descripcion.trim()
       });
       setShowAddModal(false);
-      setNewUnit({ nombre: '', tipo: '', capacidad: '', descripcion: '' });
+      setNewUnit({ codigo: '', nombre: '', tipo: '', capacidad: '', descripcion: '' });
       Alert.alert('Éxito', 'Unidad hospitalaria creada correctamente');
       loadUnidades();
-    } catch (error) {
-      Alert.alert('Error', 'No se pudo crear la unidad');
+    } catch (error: any) {
+      const msg = error.response?.data?.detail || 'No se pudo crear la unidad';
+      Alert.alert('Error', msg);
     } finally {
       setIsSaving(false);
     }
@@ -174,6 +178,13 @@ export default function UnitsManagementScreen() {
             </View>
 
             <View style={{ padding: 16 }}>
+              <Input
+                label="Código de la Unidad *"
+                placeholder="Ej. UCI-01"
+                value={newUnit.codigo}
+                onChangeText={(t) => setNewUnit({...newUnit, codigo: t})}
+                editable={!isSaving}
+              />
               <Input
                 label="Nombre de la Unidad *"
                 placeholder="Ej. Cuidados Intensivos (UCI)"

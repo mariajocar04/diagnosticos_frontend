@@ -1,6 +1,6 @@
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
 import { Building2, Clock, LogOut, Shield, Stethoscope, Trash2, UserX } from 'lucide-react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { Button } from '../../src/components/ui/Button';
 import { InfoCard } from '../../src/components/ui/InfoCard';
@@ -36,19 +36,21 @@ export default function SearchTab() {
 
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<NandaCatalog[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
 
   const recentSearches = useSearchStore(state => state.recentSearches);
   const setRecentSearches = useSearchStore(state => state.setRecentSearches);
   const clearRecentSearches = useSearchStore(state => state.clearRecentSearches);
 
-  useEffect(() => {
-    fetchDiagnoses();
-    if (!isGuest) {
-      fetchSearchHistory();
-    }
-  }, [isGuest]);
+  useFocusEffect(
+    useCallback(() => {
+      fetchDiagnoses();
+      if (!isGuest) {
+        fetchSearchHistory();
+      }
+    }, [isGuest])
+  );
 
   const fetchDiagnoses = async (searchQuery: string = '') => {
     setIsLoading(true);

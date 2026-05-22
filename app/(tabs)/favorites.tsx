@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, Alert } from 'react-native';
 import { Heart, Lock, ClipboardList, Hourglass } from 'lucide-react-native';
 import { useAuthStore } from '../../src/store/authStore';
@@ -8,7 +8,7 @@ import { InfoCard } from '../../src/components/ui/InfoCard';
 import { Button } from '../../src/components/ui/Button';
 import { nandaService } from '../../src/services/nandaService';
 import { NandaCatalog } from '../../src/types/base_type';
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
 
 export default function FavoritesTab() {
   const { colors, typography, layout } = useAppTheme();
@@ -16,18 +16,20 @@ export default function FavoritesTab() {
   const router = useRouter();
   
   const [favoriteList, setFavoriteList] = useState<NandaCatalog[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(!isGuest);
   const [isTogglingMap, setIsTogglingMap] = useState<Record<string, boolean>>({});
 
   const favorites = useSearchStore(state => state.favorites);
   const setFavorites = useSearchStore(state => state.setFavorites);
   const toggleFavoriteLocal = useSearchStore(state => state.toggleFavoriteLocal);
 
-  useEffect(() => {
-    if (!isGuest) {
-      fetchFavorites();
-    }
-  }, [favorites.length, isGuest]);
+  useFocusEffect(
+    useCallback(() => {
+      if (!isGuest) {
+        fetchFavorites();
+      }
+    }, [isGuest])
+  );
 
   const fetchFavorites = async () => {
     setIsLoading(true);
