@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, FlatList, ActivityIndicator, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { useAuthStore } from '../../src/store/authStore';
 import { useAppTheme } from '../../src/styles/theme';
@@ -6,7 +6,7 @@ import { Input } from '../../src/components/ui/Input';
 import { InfoCard } from '../../src/components/ui/InfoCard';
 import { patientService } from '../../src/services/patientService';
 import { Patient } from '../../src/types/base_type';
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
 import { Plus, Search, ChevronRight, User } from 'lucide-react-native';
 
 export default function PatientsTab() {
@@ -18,9 +18,11 @@ export default function PatientsTab() {
   const [patients, setPatients] = useState<Patient[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    fetchPatients();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchPatients(search);
+    }, [search])
+  );
 
   const fetchPatients = async (query: string = '') => {
     setIsLoading(true);

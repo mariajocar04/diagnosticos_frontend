@@ -135,7 +135,7 @@ export default function RecoveryScreen() {
             <Input 
               label="Código OTP" 
               placeholder="12345678" 
-              keyboardType="number-pad" 
+              keyboardType="keypad" 
               maxLength={8}
               value={otp}
               onChangeText={setOtp}

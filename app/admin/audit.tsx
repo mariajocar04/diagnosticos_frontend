@@ -1,6 +1,6 @@
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
 import { Activity, ArrowLeft, Clock3, FileClock, ShieldAlert } from 'lucide-react-native';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { InfoCard } from '../../src/components/ui/InfoCard';
 import { adminService } from '../../src/services/adminService';
@@ -14,11 +14,13 @@ export default function AdminAudit() {
   const isAdmin = user?.roles?.some(r => r.nombre === 'administrador');
 
   const [logs, setLogs] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (isAdmin) fetchLogs();
-  }, [isAdmin]);
+  useFocusEffect(
+    useCallback(() => {
+      if (isAdmin) fetchLogs();
+    }, [isAdmin])
+  );
 
   const normalizeLogs = (res: any) => {
     if (Array.isArray(res)) return res;

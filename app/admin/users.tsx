@@ -1,6 +1,6 @@
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
 import { ChevronLeft, Shield, Stethoscope, UserCog } from 'lucide-react-native';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { InfoCard } from '../../src/components/ui/InfoCard';
 import { adminService } from '../../src/services/adminService';
@@ -19,7 +19,7 @@ export default function AdminUsers() {
   };
 
   const [users, setUsers] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const normalizeUsers = (res: any) => {
     if (Array.isArray(res)) return res;
@@ -104,9 +104,11 @@ export default function AdminUsers() {
     }
   }, []);
 
-  useEffect(() => {
-    if (isAdmin) fetchUsers();
-  }, [isAdmin, fetchUsers]);
+  useFocusEffect(
+    useCallback(() => {
+      if (isAdmin) fetchUsers();
+    }, [isAdmin, fetchUsers])
+  );
 
   const toggleEstado = (u: any) => {
     if (u.id === user?.id && u.activo) {

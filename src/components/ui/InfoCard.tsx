@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, ViewStyle, TouchableOpacity } from 'react-native';
+import { View, StyleProp, ViewStyle, TouchableOpacity } from 'react-native';
 import { useAppTheme } from '../../styles/theme';
 
 interface InfoCardProps {
   children: React.ReactNode;
-  style?: ViewStyle;
+  style?: StyleProp<ViewStyle>;
   onPress?: () => void;
 }
 
