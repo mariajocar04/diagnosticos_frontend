@@ -37,10 +37,10 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
+downloads/
 
 # generated native folders
 /ios
 /android
-
-stich_nursedx_mobile_app_desing/    
+stitch_nursedx_mobile_app_design/
 TICOS_NurseDx_Planeacion.md    

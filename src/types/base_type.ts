@@ -29,6 +29,7 @@ export interface Patient {
   tipo_documento: string;
   numero_documento: string;
   creado_en: string;
+  remisiones?: Remision[];
 }
 
 export interface PatientCreate {
@@ -58,6 +59,7 @@ export interface NotaEnfermeria {
   contenido: string;
   creado_en: string;
   usuario?: UsuarioMini;
+  remision_id?: number;
 }
 
 export interface NotaEnfermeriaCreate {
@@ -76,6 +78,7 @@ export interface DiagnosticoClinico {
     codigo: string;
     nombre: string;
   };
+  remision_id?: number;
 }
 
 export interface DiagnosticoClinicoCreate {
@@ -93,5 +96,37 @@ export interface EventoHistorial {
   metadata?: Record<string, any>;
 }
 
+export interface Unidad {
+  id: number;
+  codigo: string;
+  nombre: string;
+  tipo: string;
+  capacidad: number;
+  descripcion?: string;
+  pacientes_activos?: number;
+}
 
+export interface Remision {
+  id: number;
+  paciente_id: number;
+  unidad_id: number;
+  motivo?: string;
+  prioridad: 'ALTA' | 'MEDIA' | 'BAJA';
+  estado: 'PENDIENTE' | 'ACTIVA' | 'EGRESADO' | 'TRASLADADO';
+  fecha_remision: string;
+  fecha_ingreso?: string;
+  unidad?: Unidad;
+  paciente?: Patient;
+}
 
+export interface UnidadBoardColumn {
+  unidad: Unidad;
+  remisiones_activas: Remision[];
+}
+
+export interface RemisionCreate {
+  paciente_id: number;
+  unidad_id: number;
+  motivo?: string;
+  prioridad?: string;
+}

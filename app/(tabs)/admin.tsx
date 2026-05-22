@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { Activity, FileText, ShieldAlert, UserCheck, Users } from 'lucide-react-native';
+import { Activity, FileText, ShieldAlert, UserCheck, Users, Building, SquareKanban } from 'lucide-react-native';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { InfoCard } from '../../src/components/ui/InfoCard';
@@ -94,6 +94,11 @@ export default function AdminTab() {
                 {renderMetricCard('Usuarios Activos', metrics.usuarios_activos || 0, UserCheck, '#ba7517')}
                 {renderMetricCard('PDFs Generados', metrics.pdfs_generados || 0, FileText, colors.outline)}
               </View>
+              <View style={styles.metricsRow}>
+                {renderMetricCard('Remisiones Activas', metrics.remisiones_activas || 0, Activity, colors.error)}
+                {/* Vacío para balancear la grilla */}
+                <View style={{ flex: 1 }} />
+              </View>
             </View>
 
             {/* Acciones de administración */}
@@ -113,6 +118,20 @@ export default function AdminTab() {
                 <View style={{ flex: 1 }}>
                   <Text style={{ fontFamily: typography.fonts.bold, fontSize: 15, color: colors.onSurface }}>Auditoría de Sistema</Text>
                   <Text style={{ fontFamily: typography.fonts.regular, fontSize: 12, color: colors.onSurfaceVariant }}>Ver logs de actividad de usuarios</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity activeOpacity={0.7} onPress={() => router.push('/admin/units')} style={[styles.actionRow, { borderBottomColor: colors.outlineVariant, borderBottomWidth: 1 }]}>
+                <Building size={20} color={colors.primary} style={{ marginRight: layout.spacing.md }} />
+                <View style={{ flex: 1 }}>
+                  <Text style={{ fontFamily: typography.fonts.bold, fontSize: 15, color: colors.onSurface }}>Unidades Hospitalarias</Text>
+                  <Text style={{ fontFamily: typography.fonts.regular, fontSize: 12, color: colors.onSurfaceVariant }}>Gestionar áreas y capacidades</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity activeOpacity={0.7} onPress={() => router.push('/admin/board')} style={styles.actionRow}>
+                <SquareKanban size={20} color={colors.secondary} style={{ marginRight: layout.spacing.md }} />
+                <View style={{ flex: 1 }}>
+                  <Text style={{ fontFamily: typography.fonts.bold, fontSize: 15, color: colors.onSurface }}>Tablero de Remisiones</Text>
+                  <Text style={{ fontFamily: typography.fonts.regular, fontSize: 12, color: colors.onSurfaceVariant }}>Ver pacientes activos por unidad</Text>
                 </View>
               </TouchableOpacity>
             </InfoCard>

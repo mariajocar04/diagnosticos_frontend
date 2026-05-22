@@ -1,4 +1,4 @@
-import { UserProfile } from '../types/base_type';
+import { UserProfile, UnidadBoardColumn } from '../types/base_type';
 import { api } from './api';
 
 export const adminService = {
@@ -24,6 +24,11 @@ export const adminService = {
 
   getAuditoria: async () => {
     const response = await api.get('/auditoria');
+    return response.data;
+  },
+  
+  getRemissionsBoard: async (): Promise<UnidadBoardColumn[]> => {
+    const response = await api.get('/remisiones-board');
     return response.data;
   }
 };

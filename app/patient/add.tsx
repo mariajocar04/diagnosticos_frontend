@@ -5,7 +5,10 @@ import { useAppTheme } from '../../src/styles/theme';
 import { Input } from '../../src/components/ui/Input';
 import { Button } from '../../src/components/ui/Button';
 import { patientService } from '../../src/services/patientService';
-import { ChevronLeft, ChevronDown } from 'lucide-react-native';
+import { unidadService } from '../../src/services/unidadService';
+import { remissionService } from '../../src/services/remissionService';
+import { Unidad } from '../../src/types/base_type';
+import { ChevronLeft, ChevronDown, CheckSquare, Square } from 'lucide-react-native';
 
 const DOCUMENT_TYPES = [
   { label: 'Cédula de Ciudadanía (CC)', value: 'cc' },
@@ -32,6 +35,29 @@ export default function AddEditPatientScreen() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
   const [showDocTypeModal, setShowDocTypeModal] = useState(false);
+
+  // Remission states
+  const [crearRemision, setCrearRemision] = useState(false);
+  const [unidadId, setUnidadId] = useState<number | null>(null);
+  const [prioridad, setPrioridad] = useState('MEDIA');
+  const [motivo, setMotivo] = useState('');
+  
+  const [unidades, setUnidades] = useState<Unidad[]>([]);
+  const [showUnitModal, setShowUnitModal] = useState(false);
+  const [showPriorityModal, setShowPriorityModal] = useState(false);
+
+  useEffect(() => {
+    loadUnidades();
+  }, []);
+
+  const loadUnidades = async () => {
+    try {
+      const data = await unidadService.getUnidades();
+      setUnidades(data.datos);
+    } catch (e) {
+      console.warn('Error al cargar unidades', e);
+    }
+  };
 
   useEffect(() => {
     if (isEditMode && patientId) {
@@ -61,6 +87,11 @@ export default function AddEditPatientScreen() {
     if (!nombreCompleto.trim()) tempErrors.nombreCompleto = 'El nombre completo es requerido';
     if (!numeroHistoria.trim()) tempErrors.numeroHistoria = 'El número de historia clínica es requerido';
     if (!numeroDocumento.trim()) tempErrors.numeroDocumento = 'El número de documento es requerido';
+    
+    if (crearRemision && !unidadId) {
+      tempErrors.unidadId = 'Debe seleccionar una unidad para la remisión';
+    }
+
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
@@ -77,13 +108,24 @@ export default function AddEditPatientScreen() {
     };
 
     try {
+      let newPatientId = patientId;
       if (isEditMode && patientId) {
         await patientService.updatePatient(patientId, data);
-        Alert.alert('Éxito', 'Paciente actualizado correctamente.');
       } else {
-        await patientService.createPatient(data);
-        Alert.alert('Éxito', 'Paciente registrado correctamente.');
+        const newPatient = await patientService.createPatient(data);
+        newPatientId = newPatient.id;
       }
+
+      if (crearRemision && newPatientId && unidadId) {
+        await remissionService.createRemission({
+          paciente_id: newPatientId,
+          unidad_id: unidadId,
+          motivo: motivo.trim(),
+          prioridad: prioridad,
+        });
+      }
+
+      Alert.alert('Éxito', `Paciente ${isEditMode ? 'actualizado' : 'registrado'} correctamente.`);
       router.back();
     } catch (e: any) {
       console.warn('Error al guardar paciente', e);
@@ -164,6 +206,67 @@ export default function AddEditPatientScreen() {
           editable={!isLoading}
         />
 
+        {!isEditMode && (
+          <View style={[styles.remissionSection, { backgroundColor: colors.surfaceContainerLowest, borderColor: colors.outlineVariant }]}>
+            <TouchableOpacity 
+              style={styles.remissionToggle} 
+              onPress={() => setCrearRemision(!crearRemision)}
+              activeOpacity={0.7}
+            >
+              {crearRemision ? 
+                <CheckSquare color={colors.primary} size={20} /> : 
+                <Square color={colors.outline} size={20} />
+              }
+              <Text style={[styles.remissionTitle, { color: colors.onSurface, fontFamily: typography.fonts.bold }]}>
+                Crear Remisión Inmediata (Opcional)
+              </Text>
+            </TouchableOpacity>
+
+            {crearRemision && (
+              <View style={styles.remissionForm}>
+                <Text style={[styles.label, { color: colors.onSurface, fontFamily: typography.fonts.semiBold }]}>
+                  Unidad de Destino *
+                </Text>
+                <TouchableOpacity
+                  style={[styles.dropdownTrigger, { borderColor: errors.unidadId ? colors.error : colors.outlineVariant, backgroundColor: colors.surface }]}
+                  onPress={() => setShowUnitModal(true)}
+                  disabled={isLoading}
+                  activeOpacity={0.7}
+                >
+                  <Text style={[styles.dropdownTriggerText, { color: unidadId ? colors.onSurface : colors.onSurfaceVariant, fontFamily: typography.fonts.regular }]}>
+                    {unidadId ? unidades.find(u => u.id === unidadId)?.nombre : 'Seleccionar Unidad...'}
+                  </Text>
+                  <ChevronDown size={20} color={colors.outline} />
+                </TouchableOpacity>
+                {errors.unidadId && <Text style={{ color: colors.error, fontSize: 12, marginTop: -12, marginBottom: 12 }}>{errors.unidadId}</Text>}
+
+                <Text style={[styles.label, { color: colors.onSurface, fontFamily: typography.fonts.semiBold }]}>
+                  Prioridad
+                </Text>
+                <TouchableOpacity
+                  style={[styles.dropdownTrigger, { borderColor: colors.outlineVariant, backgroundColor: colors.surface }]}
+                  onPress={() => setShowPriorityModal(true)}
+                  disabled={isLoading}
+                  activeOpacity={0.7}
+                >
+                  <Text style={[styles.dropdownTriggerText, { color: colors.onSurface, fontFamily: typography.fonts.regular }]}>
+                    {prioridad}
+                  </Text>
+                  <ChevronDown size={20} color={colors.outline} />
+                </TouchableOpacity>
+
+                <Input
+                  label="Motivo de la remisión (Opcional)"
+                  placeholder="Detalles sobre por qué se remite..."
+                  value={motivo}
+                  onChangeText={setMotivo}
+                  editable={!isLoading}
+                />
+              </View>
+            )}
+          </View>
+        )}
+
         {/* Botón de guardar */}
         <Button
           title={isEditMode ? 'Guardar Cambios' : 'Registrar Paciente'}
@@ -216,6 +319,91 @@ export default function AddEditPatientScreen() {
           </View>
         </TouchableOpacity>
       </Modal>
+
+      {/* Modal para selección de Unidad */}
+      <Modal
+        visible={showUnitModal}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setShowUnitModal(false)}
+      >
+        <TouchableOpacity 
+          style={styles.modalOverlay} 
+          activeOpacity={1} 
+          onPress={() => setShowUnitModal(false)}
+        >
+          <View style={[styles.modalContent, { backgroundColor: colors.surface }]}>
+            <View style={[styles.modalHeader, { borderBottomColor: colors.outlineVariant }]}>
+              <Text style={[styles.modalTitle, { color: colors.onSurface, fontFamily: typography.fonts.bold }]}>
+                Selecciona Unidad Destino
+              </Text>
+            </View>
+
+            <FlatList
+              data={unidades}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={[styles.modalOption, { borderBottomColor: colors.outlineVariant }]}
+                  onPress={() => {
+                    setUnidadId(item.id);
+                    setShowUnitModal(false);
+                  }}
+                  activeOpacity={0.7}
+                >
+                  <Text style={[styles.modalOptionText, { 
+                    color: unidadId === item.id ? colors.primary : colors.onSurface,
+                    fontFamily: unidadId === item.id ? typography.fonts.bold : typography.fonts.regular 
+                  }]}>
+                    {item.nombre} - Capacidad: {item.capacidad}
+                  </Text>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
+        </TouchableOpacity>
+      </Modal>
+
+      {/* Modal para selección de Prioridad */}
+      <Modal
+        visible={showPriorityModal}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setShowPriorityModal(false)}
+      >
+        <TouchableOpacity 
+          style={styles.modalOverlay} 
+          activeOpacity={1} 
+          onPress={() => setShowPriorityModal(false)}
+        >
+          <View style={[styles.modalContent, { backgroundColor: colors.surface }]}>
+            <View style={[styles.modalHeader, { borderBottomColor: colors.outlineVariant }]}>
+              <Text style={[styles.modalTitle, { color: colors.onSurface, fontFamily: typography.fonts.bold }]}>
+                Selecciona Prioridad
+              </Text>
+            </View>
+
+            {['ALTA', 'MEDIA', 'BAJA'].map(prio => (
+              <TouchableOpacity
+                key={prio}
+                style={[styles.modalOption, { borderBottomColor: colors.outlineVariant }]}
+                onPress={() => {
+                  setPrioridad(prio);
+                  setShowPriorityModal(false);
+                }}
+                activeOpacity={0.7}
+              >
+                <Text style={[styles.modalOptionText, { 
+                  color: prioridad === prio ? colors.primary : colors.onSurface,
+                  fontFamily: prioridad === prio ? typography.fonts.bold : typography.fonts.regular 
+                }]}>
+                  {prio}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </TouchableOpacity>
+      </Modal>
     </View>
   );
 }
@@ -261,6 +449,24 @@ const styles = StyleSheet.create({
   },
   dropdownTriggerText: {
     fontSize: 16,
+  },
+  remissionSection: {
+    marginTop: 16,
+    padding: 16,
+    borderRadius: 8,
+    borderWidth: 1,
+  },
+  remissionToggle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  remissionTitle: {
+    fontSize: 15,
+    marginLeft: 8,
+  },
+  remissionForm: {
+    marginTop: 12,
   },
   saveButton: {
     marginTop: 16,
