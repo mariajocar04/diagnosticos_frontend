@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator, Alert, Modal, TextInput } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
-import { Building, Plus, ArrowLeft } from 'lucide-react-native';
+import { Building, Plus, ArrowLeft, X } from 'lucide-react-native';
 import { useAppTheme } from '../../src/styles/theme';
+import { Input } from '../../src/components/ui/Input';
+import { Button } from '../../src/components/ui/Button';
 import { unidadService } from '../../src/services/unidadService';
 import { Unidad } from '../../src/types/base_type';
 
@@ -11,6 +13,9 @@ export default function UnitsManagementScreen() {
   const router = useRouter();
   const [unidades, setUnidades] = useState<Unidad[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [newUnit, setNewUnit] = useState({ nombre: '', tipo: '', capacidad: '', descripcion: '' });
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     loadUnidades();
@@ -25,6 +30,31 @@ export default function UnitsManagementScreen() {
       Alert.alert('Error', 'No se pudieron cargar las unidades hospitalarias');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleCreateUnit = async () => {
+    if (!newUnit.nombre || !newUnit.tipo || !newUnit.capacidad) {
+      Alert.alert('Error', 'Por favor llena los campos obligatorios (Nombre, Tipo, Capacidad)');
+      return;
+    }
+    
+    setIsSaving(true);
+    try {
+      await unidadService.createUnidad({
+        nombre: newUnit.nombre,
+        tipo: newUnit.tipo,
+        capacidad: parseInt(newUnit.capacidad),
+        descripcion: newUnit.descripcion
+      });
+      setShowAddModal(false);
+      setNewUnit({ nombre: '', tipo: '', capacidad: '', descripcion: '' });
+      Alert.alert('Éxito', 'Unidad hospitalaria creada correctamente');
+      loadUnidades();
+    } catch (error) {
+      Alert.alert('Error', 'No se pudo crear la unidad');
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -122,13 +152,68 @@ export default function UnitsManagementScreen() {
         />
       )}
 
-      {/* FAB para agregar unidad - Podría abrir un modal o ir a otra pantalla */}
+      {/* FAB para agregar unidad */}
       <TouchableOpacity 
         style={[styles.fab, { backgroundColor: colors.primary }]}
-        onPress={() => Alert.alert('Aviso', 'Formulario para crear unidad en construcción')}
+        onPress={() => setShowAddModal(true)}
       >
         <Plus color={colors.onPrimary} size={24} />
       </TouchableOpacity>
+
+      {/* Modal para Crear Unidad */}
+      <Modal visible={showAddModal} transparent animationType="slide">
+        <View style={styles.modalOverlay}>
+          <View style={[styles.modalContent, { backgroundColor: colors.surface }]}>
+            <View style={[styles.modalHeader, { borderBottomColor: colors.outlineVariant }]}>
+              <Text style={[styles.modalTitle, { color: colors.onSurface, fontFamily: typography.fonts.bold }]}>
+                Nueva Unidad Hospitalaria
+              </Text>
+              <TouchableOpacity onPress={() => setShowAddModal(false)}>
+                <X color={colors.onSurfaceVariant} size={24} />
+              </TouchableOpacity>
+            </View>
+
+            <View style={{ padding: 16 }}>
+              <Input
+                label="Nombre de la Unidad *"
+                placeholder="Ej. Cuidados Intensivos (UCI)"
+                value={newUnit.nombre}
+                onChangeText={(t) => setNewUnit({...newUnit, nombre: t})}
+                editable={!isSaving}
+              />
+              <Input
+                label="Tipo *"
+                placeholder="Ej. Crítica, Intermedia, General"
+                value={newUnit.tipo}
+                onChangeText={(t) => setNewUnit({...newUnit, tipo: t})}
+                editable={!isSaving}
+              />
+              <Input
+                label="Capacidad (Número de camas) *"
+                placeholder="Ej. 10"
+                keyboardType="numeric"
+                value={newUnit.capacidad}
+                onChangeText={(t) => setNewUnit({...newUnit, capacidad: t.replace(/[^0-9]/g, '')})}
+                editable={!isSaving}
+              />
+              <Input
+                label="Descripción (Opcional)"
+                placeholder="Detalles sobre el área..."
+                value={newUnit.descripcion}
+                onChangeText={(t) => setNewUnit({...newUnit, descripcion: t})}
+                editable={!isSaving}
+              />
+
+              <Button
+                title="Guardar Unidad"
+                onPress={handleCreateUnit}
+                isLoading={isSaving}
+                style={{ marginTop: 16 }}
+              />
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -219,5 +304,25 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-  }
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'flex-end',
+  },
+  modalContent: {
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    paddingBottom: 24,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 16,
+    borderBottomWidth: 1,
+  },
+  modalTitle: {
+    fontSize: 18,
+  },
 });

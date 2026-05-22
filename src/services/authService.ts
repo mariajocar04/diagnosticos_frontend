@@ -20,5 +20,20 @@ export const authService = {
   logout: async () => {
     const response = await api.post('/auth/logout');
     return response.data;
+  },
+
+  requestOTP: async (email: string) => {
+    const response = await api.post('/auth/otp/request', { email });
+    return response.data;
+  },
+
+  verifyOTP: async (email: string, otp_code: string) => {
+    const response = await api.post('/auth/otp/verify', { email, otp_code });
+    return response.data;
+  },
+
+  resetPassword: async (reset_token: string, new_password: string) => {
+    const response = await api.post('/auth/password/reset', { reset_token, new_password });
+    return response.data;
   }
 };
