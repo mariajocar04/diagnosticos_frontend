@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useAuthStore } from '../store/authStore';
 
 // URL Base dinámica, permitiendo fallback para emulador Android
-const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://10.209.80.241:8000/api/v1';
+const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://10.68.62.241:8000/api/v1';
 
 export const api = axios.create({
   baseURL: API_URL,

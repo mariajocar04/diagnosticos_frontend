@@ -8,7 +8,7 @@ import { useAppTheme } from '../../src/styles/theme';
 import { UserProfile } from '../../src/types/base_type';
 import { Button } from '../../src/components/ui/Button';
 import { InfoCard } from '../../src/components/ui/InfoCard';
-import { User, LogOut, Moon, Sun, Smartphone, Shield, Stethoscope } from 'lucide-react-native';
+import { User, LogOut, Moon, Sun, Smartphone, Shield, Stethoscope, ChevronRight } from 'lucide-react-native';
 
 export default function ProfileTab() {
   const { colors, typography, layout } = useAppTheme();
@@ -174,10 +174,22 @@ export default function ProfileTab() {
               <TouchableOpacity 
                 activeOpacity={0.7} 
                 style={[styles.accountOption, { borderBottomColor: colors.outlineVariant }]}
+                onPress={() => router.push('/profile/edit')}
+              >
+                <User size={20} color={colors.primary} style={{ marginRight: layout.spacing.md }} />
+                <Text style={{ fontFamily: typography.fonts.medium, fontSize: 16, color: colors.onSurface, flex: 1 }}>
+                  Editar Datos de Usuario
+                </Text>
+                <ChevronRight size={20} color={colors.outline} style={{ marginRight: layout.spacing.xs }} />
+              </TouchableOpacity>
+
+              <TouchableOpacity 
+                activeOpacity={0.7} 
+                style={[styles.accountOption, { borderBottomColor: colors.outlineVariant }]}
                 onPress={handleLogout}
               >
                 <LogOut size={20} color={colors.error} style={{ marginRight: layout.spacing.md }} />
-                <Text style={{ fontFamily: typography.fonts.medium, fontSize: 16, color: colors.error }}>
+                <Text style={{ fontFamily: typography.fonts.medium, fontSize: 16, color: colors.error, flex: 1 }}>
                   Cerrar Sesión
                 </Text>
               </TouchableOpacity>

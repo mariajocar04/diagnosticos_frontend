@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
 import { ChevronLeft } from 'lucide-react-native';
-import { useAppTheme } from '../../src/styles/theme';
-import { Input } from '../../src/components/ui/Input';
+import React, { useState } from 'react';
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Button } from '../../src/components/ui/Button';
+import { Input } from '../../src/components/ui/Input';
 import { authService } from '../../src/services/authService';
+import { useAppTheme } from '../../src/styles/theme';
 
 type Step = 'REQUEST' | 'VERIFY' | 'RESET';
 
@@ -21,7 +21,7 @@ export default function RecoveryScreen() {
   const [otp, setOtp] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  
+
   // Token
   const [resetToken, setResetToken] = useState('');
 
@@ -86,8 +86,8 @@ export default function RecoveryScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.surfaceContainerLowest }]}>
-      <TouchableOpacity 
-        style={styles.backButton} 
+      <TouchableOpacity
+        style={styles.backButton}
         onPress={() => {
           if (step === 'REQUEST') router.back();
           else if (step === 'VERIFY') setStep('REQUEST');
@@ -106,20 +106,20 @@ export default function RecoveryScreen() {
             <Text style={[styles.subtitle, { fontFamily: typography.fonts.regular, color: colors.onSurfaceVariant }]}>
               Ingresa tu correo institucional y te enviaremos un código seguro para recuperar tu cuenta.
             </Text>
-            <Input 
-              label="Correo Electrónico" 
-              placeholder="juan@ticos.com" 
-              keyboardType="email-address" 
+            <Input
+              label="Correo Electrónico"
+              placeholder="juan@ticos.com"
+              keyboardType="email-address"
               autoCapitalize="none"
               value={email}
               onChangeText={setEmail}
               editable={!loading}
             />
-            <Button 
-              title="Enviar Código" 
-              onPress={handleRequestOTP} 
+            <Button
+              title="Enviar Código"
+              onPress={handleRequestOTP}
               isLoading={loading}
-              style={{ marginTop: layout.spacing.lg }} 
+              style={{ marginTop: layout.spacing.lg }}
             />
           </>
         )}
@@ -132,20 +132,20 @@ export default function RecoveryScreen() {
             <Text style={[styles.subtitle, { fontFamily: typography.fonts.regular, color: colors.onSurfaceVariant }]}>
               Hemos enviado un código de 8 dígitos a <Text style={{ fontFamily: typography.fonts.bold }}>{email}</Text>. Ingrésalo a continuación.
             </Text>
-            <Input 
-              label="Código OTP" 
-              placeholder="12345678" 
-              keyboardType="keypad" 
+            <Input
+              label="Código OTP"
+              placeholder="12345678"
+              keyboardType="keypad"
               maxLength={8}
               value={otp}
               onChangeText={setOtp}
               editable={!loading}
             />
-            <Button 
-              title="Verificar" 
-              onPress={handleVerifyOTP} 
+            <Button
+              title="Verificar"
+              onPress={handleVerifyOTP}
               isLoading={loading}
-              style={{ marginTop: layout.spacing.lg }} 
+              style={{ marginTop: layout.spacing.lg }}
             />
           </>
         )}
@@ -158,27 +158,27 @@ export default function RecoveryScreen() {
             <Text style={[styles.subtitle, { fontFamily: typography.fonts.regular, color: colors.onSurfaceVariant }]}>
               Elige una contraseña segura que puedas recordar.
             </Text>
-            <Input 
-              label="Nueva Contraseña" 
-              placeholder="********" 
+            <Input
+              label="Nueva Contraseña"
+              placeholder="********"
               secureTextEntry
               value={newPassword}
               onChangeText={setNewPassword}
               editable={!loading}
             />
-            <Input 
-              label="Confirmar Contraseña" 
-              placeholder="********" 
+            <Input
+              label="Confirmar Contraseña"
+              placeholder="********"
               secureTextEntry
               value={confirmPassword}
               onChangeText={setConfirmPassword}
               editable={!loading}
             />
-            <Button 
-              title="Guardar Contraseña" 
-              onPress={handleResetPassword} 
+            <Button
+              title="Guardar Contraseña"
+              onPress={handleResetPassword}
               isLoading={loading}
-              style={{ marginTop: layout.spacing.lg }} 
+              style={{ marginTop: layout.spacing.lg }}
             />
           </>
         )}

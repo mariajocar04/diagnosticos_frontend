@@ -73,7 +73,7 @@ export default function LoginScreen() {
           />
         </View>
         <Text style={{ fontFamily: typography.fonts.bold, fontSize: 28, color: colors.onSurface, textAlign: 'center' }}>
-          TICOS NurseDx
+          TICOS
         </Text>
         <Text style={{ fontFamily: typography.fonts.regular, fontSize: 14, color: colors.onSurfaceVariant, textAlign: 'center', marginTop: 4 }}>
           ¡Bienvenido de nuevo!
